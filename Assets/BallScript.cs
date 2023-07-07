@@ -16,6 +16,7 @@ public class BallScript : MonoBehaviour
     private Vector2 _wallLocation;
     private float paletaLocation = 8.5f;
     private Brick[] _bricks;
+    private Slider _slider;
     void Start()
     {
     }
@@ -72,10 +73,11 @@ public class BallScript : MonoBehaviour
 
     }
 
-    public void AssignProperties(Vector2 wallLocation, Brick[] bricks)
+    public void AssignProperties(Vector2 wallLocation, Brick[] bricks, Slider slider)
     {
         _wallLocation = wallLocation;
         _bricks = bricks;
+        _slider = slider;
     }
     void CollisionCheck(Vector3 position, Vector3 objectPos)
     {

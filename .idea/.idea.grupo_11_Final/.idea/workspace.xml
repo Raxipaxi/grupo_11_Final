@@ -8,7 +8,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/BallScript.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BallScript.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -69,7 +69,7 @@
       <workItem from="1688665507723" duration="834000" />
       <workItem from="1688666367655" duration="14000" />
       <workItem from="1688731783850" duration="17541000" />
-      <workItem from="1688754651962" duration="298000" />
+      <workItem from="1688754651962" duration="4094000" />
     </task>
     <servers />
   </component>

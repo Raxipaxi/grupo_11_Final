@@ -11,6 +11,7 @@ public class MapCreation : MonoBehaviour
     [SerializeField]private GameObject wallPrefab;
     [SerializeField]private List<GameObject> walls;
     [SerializeField] private BallScript ball;
+    [SerializeField] private Slider _slider;
     [SerializeField] private Brick[] bricks;
     #region Editor
 
@@ -42,12 +43,14 @@ public class MapCreation : MonoBehaviour
 
     private void Start()
     {
-        ball.AssignProperties(stageSize / 2, bricks);
+        ball.AssignProperties(stageSize / 2, bricks,_slider);
+        _slider.AssignProperties(stageSize / 2);
     }
 
     private void InstantiateWall(Vector3 pos, Vector3 scale)
     {
         var wall =   Instantiate(wallPrefab,pos,Quaternion.identity);
+        wall.transform.parent = this.transform;
         wall.transform.localScale = scale;
         walls.Add(wall);
     }
