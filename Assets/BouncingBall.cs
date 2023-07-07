@@ -24,20 +24,19 @@ public class BouncingBall : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        // transform.position += transform.right * speed * Time.deltaTime;
-        rb.velocity = speed * direction;
+       transform.position += transform.right * speed * Time.deltaTime;
 
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (GameUtilities.IsGoInLayerMask(collision.gameObject, pLayerMask))
-        {
-            transform.position = anchorPoint.position;
-        }
-        normal = collision.GetContact(0).normal;
-        direction = Vector2.Reflect(direction, normal);
-    }
+    // private void OnCollisionEnter(Collision collision)
+    // {
+    //     if (GameUtilities.IsGoInLayerMask(collision.gameObject, pLayerMask))
+    //     {
+    //         transform.position = anchorPoint.position;
+    //     }
+    //     normal = collision.GetContact(0).normal;
+    //     direction = Vector2.Reflect(direction, normal);
+    // }
 }
