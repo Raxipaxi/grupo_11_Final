@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Utilities;
 
 public class BallScript : MonoBehaviour
 {
@@ -14,14 +15,18 @@ public class BallScript : MonoBehaviour
     private float paredVertical = 9.5f;
     private Vector2 _wallLocation;
     private float paletaLocation = 8.5f;
+    private Brick[] _bricks;
     void Start()
     {
     }
 
     void Update()
     {
-        WallDetectionX(transform.position.x,_wallLocation.x);
-        WallDetectionY(transform.position.y,_wallLocation.y);
+        // WallDetectionX(transform.position.x,_wallLocation.x);
+        CollisionCheck(transform.position, _wallLocation);
+        BrickDetection();
+        // WallDetectionY(transform.position.y,_wallLocation.y);
+        // CheckForCollsion(_wallLocation);
         Move();
         #region Deprecado
 
@@ -67,33 +72,36 @@ public class BallScript : MonoBehaviour
 
     }
 
-    public void AssignProperties(Vector2 wallLocation)
+    public void AssignProperties(Vector2 wallLocation, Brick[] bricks)
     {
         _wallLocation = wallLocation;
+        _bricks = bricks;
     }
-    void WallDetectionX(float position, float wallLocationPosition)
+    void CollisionCheck(Vector3 position, Vector3 objectPos)
     {
-        //REBOTE EN X: Calculo la posicion en y de la pelota vs. la posicion de la pared horizontal menos/más el radio de la pelota. 
-        if (position >= wallLocationPosition - radio)
-            speed.x = -Mathf.Abs(speed.x); //Invierto la velocidad, haciendo que vaya en el sentido contrario
-
-        if (position <= -wallLocationPosition + radio)
-            speed.x = Mathf.Abs(speed.x);      
-
+        if (position.x >= objectPos.x - radio || position.x <= -objectPos.x + radio)
+        {
+            speed.x *= -1;
+        }
+        if (position.y >= objectPos.y - radio || position.y <= -objectPos.y + radio)
+        {
+            speed.y *= -1;
+        }
     }
-
-    void WallDetectionY(float position, float wallLocationPosition)
-    {        //REBOTE EN X: Calculo la posicion en y de la pelota vs. la posicion de la pared horizontal menos/más el radio de la pelota. 
-        if (position >= wallLocationPosition - radio)
-            speed.y = -Mathf.Abs(speed.y); //Invierto la velocidad, haciendo que vaya en el sentido contrario
-
-        if (position <= -wallLocationPosition + radio)
-            speed.y = Mathf.Abs(speed.y);
-        
-    }
-    void ResetPosition() //Reseteo posicion de la pelota e inicio el timer para poder moverme
+    void BrickDetection()
     {
-        transform.position = Vector3.zero; //Vuelvo al lugar inicial
+        foreach (var brick in _bricks)
+        {
+            if (brick.gameObject.activeInHierarchy)
+            {
+                if (Vector3.Distance(transform.position, brick.transform.position) < radio)
+                {
+                    brick.gameObject.SetActive(false);
+                    speed *= -1;
+                }
+            }
+
+        }
     }
 
     void Move()

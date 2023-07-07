@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utilities;
 
 public class MapCreation : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MapCreation : MonoBehaviour
     [SerializeField]private GameObject wallPrefab;
     [SerializeField]private List<GameObject> walls;
     [SerializeField] private BallScript ball;
+    [SerializeField] private Brick[] bricks;
     #region Editor
 
 #if UNITY_EDITOR
@@ -40,7 +42,7 @@ public class MapCreation : MonoBehaviour
 
     private void Start()
     {
-        ball.AssignProperties(stageSize / 2);
+        ball.AssignProperties(stageSize / 2, bricks);
     }
 
     private void InstantiateWall(Vector3 pos, Vector3 scale)
