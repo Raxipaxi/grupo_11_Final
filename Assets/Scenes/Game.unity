@@ -668,7 +668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746d8f05e998150458304afc9e0d5e9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radio: 0.5
+  radio: 0.8
   scale: 1
   speed: {x: 5, y: 5, z: 0}
 --- !u!23 &536156909
