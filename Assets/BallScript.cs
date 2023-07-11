@@ -23,6 +23,7 @@ public class BallScript : MonoBehaviour
     void Update()
     {
         CollisionCheck();
+        BrickDetection();
         Move();
     }
 
@@ -32,25 +33,23 @@ public class BallScript : MonoBehaviour
         _bricks = bricks;
         _slider = slider;
     }
-    // void BrickDetection()
-    // {
-    //     foreach (var brick in _bricks)
-    //     {
-    //         if (brick.gameObject.activeInHierarchy)
-    //         {
-    //             if (CollisionCheck(brick.transform.position))
-    //             {
-    //                 if (brick.isBreakable)
-    //                 {
-    //                     brick.gameObject.SetActive(false);
-    //                 }
-    //                 speed *= -1;
-    //                 return;
-    //             }
-    //         }
-    //
-    //     }
-    // }
+    void BrickDetection()
+    {
+        foreach (Brick brick in _bricks)
+        {
+            if (brick.gameObject.activeInHierarchy)
+            {
+                if (BrickCollisionCheck(brick))
+                {
+                    if (brick.isBreakable)
+                    {
+                        brick.gameObject.SetActive(false);
+                    }
+                }
+            }
+    
+        }
+    }
     
 
     void CollisionCheck()
@@ -77,6 +76,18 @@ public class BallScript : MonoBehaviour
             }
             speed.y = Math.Abs(speed.y);
         }
+    }
+
+    bool BrickCollisionCheck(Brick brick)
+    {
+        if (Math.Abs(transform.position.x +radio - brick.transform.position.x) < 0.5f && Math.Abs(transform.position.y +radio - brick.transform.position.y) < 0.5f)
+        {
+            speed = -speed;
+            return true;
+
+        }
+
+        return false;
     }
     void Move()
     {
