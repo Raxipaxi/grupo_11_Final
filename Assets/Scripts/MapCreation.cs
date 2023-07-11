@@ -37,6 +37,15 @@ public class MapCreation : MonoBehaviour
 
         walls.Clear();
     }
+
+    [ContextMenu("Build Bricks")]
+    private void BakeBricks()
+    {
+        for (int i = 0; i < bricks.Length; i++)
+        {
+            bricks[i].ChangeColor();
+        }
+    }
 #endif
 
     #endregion

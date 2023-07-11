@@ -4,11 +4,12 @@ using UnityEngine;
 namespace Utilities
 {
     public class Slider : MonoBehaviour
-    {    
+    {
 
         [SerializeField] private float speed;
         private float _currSpeed;
         [SerializeField] private float radio = 0.5f;
+        [SerializeField] public float Radio => radio;
         private Vector2 _wallLocation;
         private BallScript _currBall;
 
@@ -20,6 +21,11 @@ namespace Utilities
         private void Update()
         {
             Inputs();
+        }
+
+        public void GetRange()
+        {
+            
         }
 
         public void AssignProperties(Vector2 wallLocation)

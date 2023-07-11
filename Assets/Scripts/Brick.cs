@@ -7,10 +7,19 @@ namespace Utilities
     public class Brick : MonoBehaviour
     {
         [SerializeField] private Color[] _colors;
+        [field:SerializeField] public bool isBreakable;
 
-        private void Start()
+        public void ChangeColor()
         {
-            GetComponent<MeshRenderer>().material.color = _colors[Random.Range(0,_colors.Length)];
+            if (isBreakable)
+            {
+               GetComponent<MeshRenderer>().sharedMaterial.color = _colors[1];
+            }
+            else
+            {
+                GetComponent<MeshRenderer>().sharedMaterial.color = _colors[0];
+
+            }
         }
     }
 }

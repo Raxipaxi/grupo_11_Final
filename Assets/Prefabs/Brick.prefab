@@ -97,5 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _colors:
-  - {r: 0.7490196, g: 0, b: 0.033244133, a: 0.98039216}
-  - {r: 0, g: 1, b: 0.03812504, a: 1}
+  - {r: 0.6320754, g: 0.3287202, b: 0, a: 1}
+  - {r: 0, g: 0.49955738, b: 0.7490196, a: 0.98039216}
+  isBreakable: 0
