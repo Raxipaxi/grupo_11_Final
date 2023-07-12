@@ -43,7 +43,7 @@ public class BallScript : MonoBehaviour
                 {
                     if (brick.isBreakable)
                     {
-                        brick.gameObject.SetActive(false);
+                        brick.Hit();
                     }
                 }
             }
@@ -54,7 +54,29 @@ public class BallScript : MonoBehaviour
 
     void CollisionCheck()
     {
-        if (transform.position.x - radio <= -_wallLocation.x || transform.position.x + radio >= _wallLocation.x)
+        WallCollision();
+        SliderCollision();
+    }
+
+    void SliderCollision()
+    {
+        if (transform.position.y - radio <= _slider.transform.position.y)
+        {
+            if (transform.position.x + radio <= _slider.transform.position.x - _slider.Size.x/2) // Si toco la mitad del lado izquierdo (negativo) me voy para x en el lado izquierdo
+            {
+                speed.x = Math.Abs(speed.x) * -1;
+            }
+            if (transform.position.x + radio >= _slider.transform.position.x  + _slider.Size.x / 2)
+            {
+                speed.x = Math.Abs(speed.x);
+            }
+            speed.y = Math.Abs(speed.y);
+        }
+    }
+
+    void WallCollision()
+    {
+        if (transform.position.x - radio < -_wallLocation.x || transform.position.x + radio > _wallLocation.x)
         {
             speed.x = -speed.x;
         }
@@ -63,24 +85,11 @@ public class BallScript : MonoBehaviour
         {
             speed.y = -speed.y;
         }
-
-        if (transform.position.y - radio <= _slider.transform.position.y)
-        {
-            if (transform.position.x + radio <= _slider.transform.position.x - _slider.transform.localScale.x / 2) // Si toco la mitad del lado izquierdo (negativo) me voy para x en el lado izquierdo
-            {
-                speed.x = Math.Abs(speed.x) * -1;
-            }
-            if (transform.position.x + radio >= _slider.transform.position.x  + _slider.transform.localScale.x / 2)
-            {
-                speed.x = Math.Abs(speed.x);
-            }
-            speed.y = Math.Abs(speed.y);
-        }
     }
-
     bool BrickCollisionCheck(Brick brick)
     {
-        if (Math.Abs(transform.position.x +radio - brick.transform.position.x) < 0.5f && Math.Abs(transform.position.y +radio - brick.transform.position.y) < 0.5f)
+        if (brick.transform.position.x < transform.position.x + radio && transform.position.x - radio < brick.transform.position.x + brick.Size.x &&
+            brick.transform.position.y < transform.position.y + radio && transform.position.y - radio < brick.transform.position.y + brick.Size.y)
         {
             speed = -speed;
             return true;

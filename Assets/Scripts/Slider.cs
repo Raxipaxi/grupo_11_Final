@@ -8,8 +8,8 @@ namespace Utilities
 
         [SerializeField] private float speed;
         private float _currSpeed;
-        [SerializeField] private float radio = 0.5f;
-        [SerializeField] public float Radio => radio;
+        [SerializeField] private Vector2 size;
+        [SerializeField] public Vector2 Size => size;
         private Vector2 _wallLocation;
         private BallScript _currBall;
 
@@ -40,12 +40,12 @@ namespace Utilities
         }
         void Inputs()
         {
-            if (Input.GetKey(KeyCode.A) && transform.position.x >= -_wallLocation.x + radio)
+            if (Input.GetKey(KeyCode.A) && transform.position.x >= -_wallLocation.x + size.x)
             {
                 Move(-1);
             }
             
-            if (Input.GetKey(KeyCode.D) && transform.position.x <= _wallLocation.x - radio)
+            if (Input.GetKey(KeyCode.D) && transform.position.x <= _wallLocation.x - size.x)
             {
                 Move(1);
             }
