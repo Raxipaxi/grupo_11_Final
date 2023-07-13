@@ -8,26 +8,24 @@ using UnityEngine.EventSystems;
 
 public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
-    public string buttonSelectedMark = "-";
     public Button button;
     public TextMeshProUGUI txtButton;
+    public GameObject selectedMarker;
 
-    private string originalText;
-
-    public void Awake()
+    public void Initialize()
     {
-        originalText = txtButton.text;
+        Deselect();
     }
 
     private void Select()
     {
+        selectedMarker.SetActive(true);
         //AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.hoverButton);
-        txtButton.text = $"{buttonSelectedMark} {originalText} {buttonSelectedMark}";
     }
 
     public void Deselect()
     {
-        txtButton.text = originalText;
+        selectedMarker.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

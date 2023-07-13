@@ -4,14 +4,15 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Windows;
+using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour
 {
-    public string LEVE_SCENE = "Level";
+    public GlobalConfig globalConfig;
 
     [Header("Screens")]
-    public GameObject menu;
-    public GameObject credits;
+    public Panel menu;
+    public Panel credits;
 
     [Header("Skip")]
     public KeyCode skipKey = KeyCode.F1;
@@ -24,16 +25,22 @@ public class MainMenu : MonoBehaviour
     public MenuButton goBackButton;
     public KeyCode goBackKey = KeyCode.Escape;
 
-    private bool notInMainMenu;
     private MenuButton currentSelectedButton;
+    private List<MenuButton> buttons = new List<MenuButton>();
     //private static MenuesInputs _inputs;
 
     void Awake()
     {
-        //playButton.button.onClick.AddListener(SelectButtonSound);
-        //creditsButton.button.onClick.AddListener(SelectButtonSound);
-        //quitButton.button.onClick.AddListener(SelectButtonSound);
-        //goBackButton.button.onClick.AddListener(SelectButtonSound);
+        buttons.Add(playButton);
+        buttons.Add(creditsButton);
+        buttons.Add(quitButton);
+        buttons.Add(goBackButton);
+
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            //buttons[i].button.onClick.AddListener(SelectButtonSound);
+            buttons[i].Deselect();
+        }
 
         playButton.button.onClick.AddListener(OnClickPlayHandler);
         creditsButton.button.onClick.AddListener(OnClickCreditsHandler);
@@ -63,15 +70,14 @@ public class MainMenu : MonoBehaviour
 
     //private void GoBack(InputAction.CallbackContext cxt)
     //{
-    //    if (!notInMainMenu) return;
+    //    if (!credits.IsOpen) return;
     //    GoBack();
     //}
 
     private void GoBack()
     {
-        menu.SetActive(true);
-        credits.SetActive(false);
-        notInMainMenu = false;
+        menu.Open();
+        credits.Close();
         SelectButton(currentSelectedButton);
     }
 
@@ -82,15 +88,14 @@ public class MainMenu : MonoBehaviour
 
     private void OnClickPlayHandler()
     {
-        SceneManager.LoadScene(LEVE_SCENE);
+        SceneManager.LoadScene(globalConfig.gameScene);
     }
 
     private void OnClickCreditsHandler()
     {
         currentSelectedButton = creditsButton;
-        notInMainMenu = true;
-        menu.SetActive(false);
-        credits.SetActive(true);
+        menu.Close();
+        credits.Open();
         SelectButton(goBackButton);
     }
 
@@ -111,10 +116,10 @@ public class MainMenu : MonoBehaviour
 
     private void OnDestroy()
     {
-        playButton.button.onClick.RemoveAllListeners();
-        creditsButton.button.onClick.RemoveAllListeners();
-        quitButton.button.onClick.RemoveAllListeners();
-        goBackButton.button.onClick.RemoveAllListeners();
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            buttons[i].button.onClick.RemoveAllListeners();
+        }
 
         //_inputs.Game.Pause.performed -= GoBack;
         //_inputs.Game.SkipMenu.performed -= SkipMenu;
