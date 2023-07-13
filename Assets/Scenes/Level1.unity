@@ -4582,7 +4582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radio: 0.5
-  speed: {x: 2, y: 2}
+  speed: {x: 5, y: 5}
 --- !u!4 &1956100927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 423946552486832296, guid: 31255cfe60e1e6b45ae94371c1039c9c, type: 3}
