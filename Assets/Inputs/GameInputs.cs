@@ -26,43 +26,21 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         {
             ""name"": ""Gameplay"",
             ""id"": ""0d96567e-d644-41d3-b48a-fa0a0a4c554d"",
-            ""actions"": [
-                {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""83f3f0f3-540a-481f-b76a-e378d4e103e6"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""f4c89b05-2e27-4404-b23d-e6ce045fe064"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
+            ""actions"": [],
+            ""bindings"": []
         },
         {
             ""name"": ""UI"",
             ""id"": ""873e1eeb-97ac-48f1-9692-c84fd88545c8"",
             ""actions"": [
                 {
-                    ""name"": ""PauseToggle"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""7cf0a281-4ace-4bb9-afa5-7c3a2d604172"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
-                    ""initialStateCheck"": false
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Select"",
@@ -79,10 +57,10 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""1c2f4f9a-90c7-42a0-9a01-76818bfce349"",
                     ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
+                    ""interactions"": ""Tap"",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PauseToggle"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -146,21 +124,72 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Cheats"",
+            ""id"": ""01e4a1b7-8e95-4240-a616-d0b163dd1921"",
+            ""actions"": [
+                {
+                    ""name"": ""AddPoints"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b5f22f5-6586-4af4-8e38-55d4ed43343b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SkipToWin"",
+                    ""type"": ""Button"",
+                    ""id"": ""22763042-2f49-4ac4-a870-e25bff01cef4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""1a13db48-3bbf-4587-8c86-cd0f228394ba"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AddPoints"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6e2e892-862a-4fc8-b776-1d2c7d2946fb"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SkipToWin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
 }");
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
-        m_Gameplay_Newaction = m_Gameplay.FindAction("New action", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_PauseToggle = m_UI.FindAction("PauseToggle", throwIfNotFound: true);
+        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_GoBack = m_Menu.FindAction("GoBack", throwIfNotFound: true);
         m_Menu_SkipMenu = m_Menu.FindAction("SkipMenu", throwIfNotFound: true);
+        // Cheats
+        m_Cheats = asset.FindActionMap("Cheats", throwIfNotFound: true);
+        m_Cheats_AddPoints = m_Cheats.FindAction("AddPoints", throwIfNotFound: true);
+        m_Cheats_SkipToWin = m_Cheats.FindAction("SkipToWin", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -220,12 +249,10 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     // Gameplay
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
-    private readonly InputAction m_Gameplay_Newaction;
     public struct GameplayActions
     {
         private @GameInputs m_Wrapper;
         public GameplayActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Gameplay_Newaction;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -235,16 +262,10 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_GameplayActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnNewaction;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
             }
         }
     }
@@ -253,13 +274,13 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_PauseToggle;
+    private readonly InputAction m_UI_Pause;
     private readonly InputAction m_UI_Select;
     public struct UIActions
     {
         private @GameInputs m_Wrapper;
         public UIActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @PauseToggle => m_Wrapper.m_UI_PauseToggle;
+        public InputAction @Pause => m_Wrapper.m_UI_Pause;
         public InputAction @Select => m_Wrapper.m_UI_Select;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
@@ -270,9 +291,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @PauseToggle.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseToggle;
-                @PauseToggle.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseToggle;
-                @PauseToggle.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPauseToggle;
+                @Pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
                 @Select.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSelect;
@@ -280,9 +301,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @PauseToggle.started += instance.OnPauseToggle;
-                @PauseToggle.performed += instance.OnPauseToggle;
-                @PauseToggle.canceled += instance.OnPauseToggle;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
@@ -331,18 +352,63 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         }
     }
     public MenuActions @Menu => new MenuActions(this);
+
+    // Cheats
+    private readonly InputActionMap m_Cheats;
+    private ICheatsActions m_CheatsActionsCallbackInterface;
+    private readonly InputAction m_Cheats_AddPoints;
+    private readonly InputAction m_Cheats_SkipToWin;
+    public struct CheatsActions
+    {
+        private @GameInputs m_Wrapper;
+        public CheatsActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
+        public InputAction @AddPoints => m_Wrapper.m_Cheats_AddPoints;
+        public InputAction @SkipToWin => m_Wrapper.m_Cheats_SkipToWin;
+        public InputActionMap Get() { return m_Wrapper.m_Cheats; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CheatsActions set) { return set.Get(); }
+        public void SetCallbacks(ICheatsActions instance)
+        {
+            if (m_Wrapper.m_CheatsActionsCallbackInterface != null)
+            {
+                @AddPoints.started -= m_Wrapper.m_CheatsActionsCallbackInterface.OnAddPoints;
+                @AddPoints.performed -= m_Wrapper.m_CheatsActionsCallbackInterface.OnAddPoints;
+                @AddPoints.canceled -= m_Wrapper.m_CheatsActionsCallbackInterface.OnAddPoints;
+                @SkipToWin.started -= m_Wrapper.m_CheatsActionsCallbackInterface.OnSkipToWin;
+                @SkipToWin.performed -= m_Wrapper.m_CheatsActionsCallbackInterface.OnSkipToWin;
+                @SkipToWin.canceled -= m_Wrapper.m_CheatsActionsCallbackInterface.OnSkipToWin;
+            }
+            m_Wrapper.m_CheatsActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @AddPoints.started += instance.OnAddPoints;
+                @AddPoints.performed += instance.OnAddPoints;
+                @AddPoints.canceled += instance.OnAddPoints;
+                @SkipToWin.started += instance.OnSkipToWin;
+                @SkipToWin.performed += instance.OnSkipToWin;
+                @SkipToWin.canceled += instance.OnSkipToWin;
+            }
+        }
+    }
+    public CheatsActions @Cheats => new CheatsActions(this);
     public interface IGameplayActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
-        void OnPauseToggle(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
         void OnGoBack(InputAction.CallbackContext context);
         void OnSkipMenu(InputAction.CallbackContext context);
+    }
+    public interface ICheatsActions
+    {
+        void OnAddPoints(InputAction.CallbackContext context);
+        void OnSkipToWin(InputAction.CallbackContext context);
     }
 }

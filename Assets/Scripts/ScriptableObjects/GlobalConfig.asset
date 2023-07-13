@@ -15,3 +15,13 @@ MonoBehaviour:
   mainMenuScene: MainMenu
   gameScene: Level1
   uiManagerPrefab: {fileID: 798730798039481524, guid: 5e22c8975bd7ffc4293447ca1d260f0f, type: 3}
+  restartPopup:
+    title: Sure you want to restart?
+    description: Restarting the level will loose the current points!
+  mainMenuPopup:
+    title: Sure you want to leave?
+    description: 'Warning! Going back to the menu will lose all your points and gameplay. '
+  exitPopup:
+    title: Sure you want to quit?
+    description: Warning! The game has no save system, exiting will make you lose
+      all your points!

@@ -4,43 +4,21 @@
         {
             "name": "Gameplay",
             "id": "0d96567e-d644-41d3-b48a-fa0a0a4c554d",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "83f3f0f3-540a-481f-b76a-e378d4e103e6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "f4c89b05-2e27-4404-b23d-e6ce045fe064",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
+            "actions": [],
+            "bindings": []
         },
         {
             "name": "UI",
             "id": "873e1eeb-97ac-48f1-9692-c84fd88545c8",
             "actions": [
                 {
-                    "name": "PauseToggle",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "7cf0a281-4ace-4bb9-afa5-7c3a2d604172",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Press",
-                    "initialStateCheck": false
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Select",
@@ -57,10 +35,10 @@
                     "name": "",
                     "id": "1c2f4f9a-90c7-42a0-9a01-76818bfce349",
                     "path": "<Keyboard>/escape",
-                    "interactions": "",
+                    "interactions": "Tap",
                     "processors": "",
                     "groups": "",
-                    "action": "PauseToggle",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -120,6 +98,54 @@
                     "processors": "",
                     "groups": "",
                     "action": "SkipMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Cheats",
+            "id": "01e4a1b7-8e95-4240-a616-d0b163dd1921",
+            "actions": [
+                {
+                    "name": "AddPoints",
+                    "type": "Button",
+                    "id": "0b5f22f5-6586-4af4-8e38-55d4ed43343b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SkipToWin",
+                    "type": "Button",
+                    "id": "22763042-2f49-4ac4-a870-e25bff01cef4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1a13db48-3bbf-4587-8c86-cd0f228394ba",
+                    "path": "<Keyboard>/f3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AddPoints",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6e2e892-862a-4fc8-b776-1d2c7d2946fb",
+                    "path": "<Keyboard>/f2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipToWin",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

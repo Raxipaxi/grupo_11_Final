@@ -10,6 +10,8 @@ public class SoundReferences : ScriptableObject
     public AudioClip selectButton;
     public AudioClip pauseSound;
     public AudioClip mainMenu;
+    public AudioClip openPopup;
+    public AudioClip closePopup;
 
     [Header("Level")]
     public AudioClip playerDeath;

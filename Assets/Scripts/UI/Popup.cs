@@ -15,24 +15,28 @@ public class Popup : Panel
         base.Initialize();
         btnConfirm.Deselect();
         btnCancel.Deselect();
+
+        btnCancel.button.onClick.AddListener(Close);
     }
 
-    public void SetPopupInfo(string title, string description)
+    public void SetPopupInfo(GlobalConfig.PopupInfo popupInfo)
     {
-        txtTitle.text = title;
-        txtDescription.text = description;
+        txtTitle.text = popupInfo.title;
+        txtDescription.text = popupInfo.description;
     }
 
     public override void Open()
     {
         base.Open();
+        AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.openPopup);
         btnConfirm.button.Select();
     }
 
     public override void Close()
     {
         base.Close();
+        AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.closePopup);
         btnConfirm.button.onClick.RemoveAllListeners();
-        btnCancel.button.onClick.RemoveAllListeners();
+        btnCancel.Deselect();
     }
 }

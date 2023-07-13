@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b643cc57cfb9404a80f23885ca35c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOpen: 0
   txtTitle: {fileID: 5533666978122886045}
   txtDescription: {fileID: 1780440444404399995}
   btnConfirm: {fileID: 2335090449124765866}
@@ -553,6 +554,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3636398902982293787}
     m_Modifications:
+    - target: {fileID: 4439527025149536788, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439527025149536788, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
+      propertyPath: m_Navigation.m_SelectOnLeft
+      value: 
+      objectReference: {fileID: 1426634704522946796}
     - target: {fileID: 4705913449081015975, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
       propertyPath: m_Name
       value: BTN_Cancel
@@ -662,6 +671,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ade04a75f897454e8accd09ced6276d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3593081616255770069 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4439527025149536788, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
+  m_PrefabInstance: {fileID: 883109046140385217}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6976793507697283733 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7823845762188305748, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
@@ -674,6 +694,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3636398902982293787}
     m_Modifications:
+    - target: {fileID: 4439527025149536788, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4439527025149536788, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
+      propertyPath: m_Navigation.m_SelectOnRight
+      value: 
+      objectReference: {fileID: 3593081616255770069}
     - target: {fileID: 4705913449081015975, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
       propertyPath: m_Name
       value: BTN_Confirm
@@ -768,6 +796,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
+--- !u!114 &1426634704522946796 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4439527025149536788, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}
+  m_PrefabInstance: {fileID: 3337223374473347832}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2335090449124765866 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1024527812555469394, guid: 202ef76be82c5ed4ab74470ea8d8d79b, type: 3}

@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 259628894757747379}
+  - component: {fileID: 7208291934187997491}
   m_Layer: 5
   m_Name: CNT_HUD
   m_TagString: Untagged
@@ -37,6 +38,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &7208291934187997491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 215133676948710818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd07a210881057448c3d2e008f561f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOpen: 0
 --- !u!1 &225522256829452767
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,9 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 0
-  currentPoints: {fileID: 2063954719421477161}
+  txtCurrentPoints: {fileID: 2063954719421477161}
   pauseMenu: {fileID: 9195768818472519822}
-  hud: {fileID: 0}
+  hud: {fileID: 7208291934187997491}
   winPopup: {fileID: 7644382450391780391}
 --- !u!1 &804032184953371737
 GameObject:
