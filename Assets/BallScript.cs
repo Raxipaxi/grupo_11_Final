@@ -9,98 +9,125 @@ using Utilities;
 public class BallScript : MonoBehaviour
 {
     [SerializeField] private float radio = 0.5f;
-    [SerializeField] private Vector3 speed;
-    private float paredHorizontal = 5f;
-    private float paredVertical = 9.5f;
+    [SerializeField] private Vector2 speed;
+    public Vector2 Speed => speed;
     private Vector2 _wallLocation;
-    private float paletaLocation = 8.5f;
-    private Brick[] _bricks;
+
+    private float _bricksY;
+    // private Brick[] _bricks;
     private Slider _slider;
-    void Start()
+    private PhysicsManager _physicsManager;
+    private Vector2 dir;
+    private MeshRenderer _renderer;
+    public Vector2 Dir => dir;
+
+    private void Awake()
     {
+        _renderer = GetComponent<MeshRenderer>();
+        radio = _renderer.bounds.extents.magnitude;
     }
 
+    void Start()
+    {
+        dir = new Vector2(1, 1);
+        
+    }
+
+    void ChangeDir(float currDirX, float currDirY)
+    {
+        dir.x = currDirX ;
+        dir.y = currDirY;
+    }
     void Update()
     {
         CollisionCheck();
-        BrickDetection();
         Move();
     }
 
-    public void AssignProperties(Vector2 wallLocation, Brick[] bricks, Slider slider)
+    public void AssignProperties(Vector2 wallLocation, float bricksY, Slider slider, PhysicsManager manager)
     {
         _wallLocation = wallLocation;
-        _bricks = bricks;
+        _bricksY = bricksY;
+        // _bricks = bricks;
         _slider = slider;
+        _physicsManager = manager;
     }
-    void BrickDetection()
-    {
-        foreach (Brick brick in _bricks)
-        {
-            if (brick.gameObject.activeInHierarchy)
-            {
-                if (BrickCollisionCheck(brick))
-                {
-                    if (brick.isBreakable)
-                    {
-                        brick.Hit();
-                    }
-                }
-            }
-    
-        }
-    }
+    // void BrickDetection()
+    // {
+    //     foreach (Brick brick in _bricks)
+    //     {
+    //         if (brick.gameObject.activeInHierarchy)
+    //         {
+    //             if (BrickCollisionCheck(brick))
+    //             {
+    //                 if (brick.isBreakable)
+    //                 {
+    //                     brick.Hit();
+    //                 }
+    //             }
+    //         }
+    //
+    //     }
+    // }
     
 
     void CollisionCheck()
     {
         WallCollision();
-        SliderCollision();
+        DetectSlider();
+        // DetectBricks();
     }
 
-    void SliderCollision()
+    #region Deprecated
+    // void SliderCollision()
+    // {
+    //     if (transform.position.y - radio <= _slider.transform.position.y)
+    //     {
+    //         if (transform.position.x + radio <= _slider.transform.position.x - _slider.Size.x/2) // Si toco la mitad del lado izquierdo (negativo) me voy para x en el lado izquierdo
+    //         {
+    //             speed.x = Math.Abs(speed.x) * -1;
+    //         }
+    //         if (transform.position.x + radio >= _slider.transform.position.x  + _slider.Size.x / 2)
+    //         {
+    //             speed.x = Math.Abs(speed.x);
+    //         }
+    //         speed.y = Math.Abs(speed.y);
+    //     }
+    // }
+    
+
+    #endregion
+
+    void DetectSlider()
     {
-        if (transform.position.y - radio <= _slider.transform.position.y)
+        if (transform.position.y + radio <= _slider.transform.position.y + _slider.Size.y)
         {
-            if (transform.position.x + radio <= _slider.transform.position.x - _slider.Size.x/2) // Si toco la mitad del lado izquierdo (negativo) me voy para x en el lado izquierdo
-            {
-                speed.x = Math.Abs(speed.x) * -1;
-            }
-            if (transform.position.x + radio >= _slider.transform.position.x  + _slider.Size.x / 2)
-            {
-                speed.x = Math.Abs(speed.x);
-            }
-            speed.y = Math.Abs(speed.y);
+            ChangeDir(_physicsManager.SliderCollision(this,radio).x, _physicsManager.SliderCollision(this,radio).y);
         }
-    }
 
+    }
+    void DetectBricks()
+    {
+        if(transform.position.y < _bricksY){return;}
+        
+        ChangeDir(dir.x * _physicsManager.BrickCollisionCheck(this, radio).x, dir.y * _physicsManager.BrickCollisionCheck(this, radio).y);
+    }
     void WallCollision()
     {
-        if (transform.position.x - radio < -_wallLocation.x || transform.position.x + radio > _wallLocation.x)
+        if (transform.position.x - radio <= 0 || transform.position.x + radio >= _wallLocation.x)
         {
-            speed.x = -speed.x;
+            ChangeDir(dir.x * -1, dir.y);
         }
 
-        if (transform.position.y - radio <= -_wallLocation.y ||transform.position.y + radio >= _wallLocation.y)
+        if (transform.position.y - radio <= 0 ||transform.position.y + radio >= _wallLocation.y)
         {
-            speed.y = -speed.y;
+            ChangeDir(dir.x, dir.y * -1);
         }
     }
-    bool BrickCollisionCheck(Brick brick)
-    {
-        if (brick.transform.position.x < transform.position.x + radio && transform.position.x - radio < brick.transform.position.x + brick.Size.x &&
-            brick.transform.position.y < transform.position.y + radio && transform.position.y - radio < brick.transform.position.y + brick.Size.y)
-        {
-            speed = -speed;
-            return true;
 
-        }
-
-        return false;
-    }
     void Move()
     {
-        transform.position += speed  * Time.deltaTime;
+        transform.position += new Vector3(speed.x* dir.x, speed.y * dir.y, 0)  * Time.deltaTime;
     }
     
 }

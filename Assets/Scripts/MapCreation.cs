@@ -1,66 +1,46 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using Utilities;
 
 public class MapCreation : MonoBehaviour
 {
-    [SerializeField]private Vector2 stageSize;
+    [SerializeField] private Vector2 stageSize;
     public Vector2 StageSize => stageSize;
-    [SerializeField]private GameObject wallPrefab;
-    [SerializeField]private List<GameObject> walls;
+    [SerializeField] private GameObject[] wallsX;
+    [SerializeField] private GameObject[] wallsY;
+    [SerializeField] private Vector2 brickSize;
+    public Vector2 BrickSize => brickSize;
+    private Dictionary<Vector2, Bricks> _bricksMap = new Dictionary<Vector2, Bricks>();
+    public Dictionary<Vector2, Bricks> BricksMap => _bricksMap;
     [SerializeField] private BallScript ball;
     [SerializeField] private Slider _slider;
-    [SerializeField] private Brick[] bricks;
-    #region Editor
+    [SerializeField] private Bricks[] bricks;
+    private PhysicsManager _manager;
 
-#if UNITY_EDITOR
-    [ContextMenu("BakeStage")]
-    private void BakeStage()
+    private void Awake()
     {
-        var stageScaleX = new Vector3(stageSize.x, 1, 1);
-        var stageScaleY = new Vector3(1, stageSize.y, 1);
-        InstantiateWall(new Vector3(0,stageSize.y/2),stageScaleX);
-        InstantiateWall(new Vector3(0,-stageSize.y/2),stageScaleX );
-        InstantiateWall(new Vector3(stageSize.x/2, 0), stageScaleY);
-        InstantiateWall(new Vector3(-stageSize.x/2,0),stageScaleY);
+        CalculateDistance();
+        _manager = new PhysicsManager(_slider, this);
     }
-    [ContextMenu("ClearStage")]
-    private void ClearScenenary()
-    {
-
-        for (int i = 0; i < walls.Count; i++)
-        {
-            DestroyImmediate(walls[i]);
-        }
-
-        walls.Clear();
-    }
-
-    [ContextMenu("Build Bricks")]
-    private void BakeBricks()
+    private void Start()
     {
         for (int i = 0; i < bricks.Length; i++)
         {
-            bricks[i].ChangeColor();
+            if(_bricksMap.ContainsKey(bricks[i].transform.position))
+                _bricksMap.Add(bricks[i].transform.position, bricks[i]);
         }
-    }
-#endif
+        //ball.AssignProperties(stageSize, bricks,_slider);
+        _slider.AssignProperties(stageSize);
+        ball.AssignProperties(stageSize,brickSize.y,_slider,_manager);
 
-    #endregion
-
-    private void Start()
-    {
-        ball.AssignProperties(stageSize / 2, bricks,_slider);
-        _slider.AssignProperties(stageSize / 2);
     }
 
-    private void InstantiateWall(Vector3 pos, Vector3 scale)
+    private void CalculateDistance()
     {
-        var wall =   Instantiate(wallPrefab,pos,Quaternion.identity);
-        wall.transform.parent = this.transform;
-        wall.transform.localScale = scale;
-        walls.Add(wall);
+        stageSize = new Vector2(Math.Abs(wallsX[0].transform.position.x - wallsX[1].transform.position.x),
+            Math.Abs(wallsY[0].transform.position.y - wallsY[1].transform.position.y));
     }
 }

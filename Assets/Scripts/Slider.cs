@@ -12,6 +12,13 @@ namespace Utilities
         [SerializeField] public Vector2 Size => size;
         private Vector2 _wallLocation;
         private BallScript _currBall;
+        private MeshRenderer _renderer;
+
+        private void Awake()
+        {
+            _renderer = GetComponent<MeshRenderer>();
+            size = _renderer.bounds.size / 2;
+        }
 
         private void Start()
         {
@@ -40,12 +47,12 @@ namespace Utilities
         }
         void Inputs()
         {
-            if (Input.GetKey(KeyCode.A) && transform.position.x >= -_wallLocation.x + size.x)
+            if (Input.GetKey(KeyCode.A) && transform.position.x - size.x >= 0)
             {
                 Move(-1);
             }
             
-            if (Input.GetKey(KeyCode.D) && transform.position.x <= _wallLocation.x - size.x)
+            if (Input.GetKey(KeyCode.D) && transform.position.x + size.x < _wallLocation.x)
             {
                 Move(1);
             }
