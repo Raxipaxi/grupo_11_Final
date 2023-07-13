@@ -10,6 +10,13 @@ public class Popup : Panel
     public MenuButton btnConfirm;
     public MenuButton btnCancel;
 
+    public override void Initialize()
+    {
+        base.Initialize();
+        btnConfirm.Deselect();
+        btnCancel.Deselect();
+    }
+
     public void SetPopupInfo(string title, string description)
     {
         txtTitle.text = title;

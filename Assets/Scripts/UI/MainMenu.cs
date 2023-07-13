@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.Windows;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
@@ -16,7 +17,6 @@ public class MainMenu : MonoBehaviour
     public Panel credits;
 
     [Header("Skip")]
-    public KeyCode skipKey = KeyCode.F1;
     public TextMeshProUGUI skipText;
 
     [Header("Buttons")]
@@ -24,11 +24,10 @@ public class MainMenu : MonoBehaviour
     public MenuButton creditsButton;
     public MenuButton quitButton;
     public MenuButton goBackButton;
-    public KeyCode goBackKey = KeyCode.Escape;
 
     private MenuButton currentSelectedButton;
     private List<MenuButton> buttons = new List<MenuButton>();
-    //private static MenuesInputs _inputs;
+    private static GameInputs _inputs;
 
     void Awake()
     {
@@ -48,12 +47,12 @@ public class MainMenu : MonoBehaviour
         quitButton.button.onClick.AddListener(OnClickQuitHandler);
         goBackButton.button.onClick.AddListener(OnClickGoBackHandler);
 
-        skipText.text = $"{skipKey} to skip";
+        _inputs = new GameInputs();
+        _inputs.Enable();
+        _inputs.Menu.SkipMenu.performed += SkipMenu;
+        _inputs.Menu.GoBack.performed += GoBack;
 
-        //_inputs = new MenuesInputs();
-        //_inputs.Enable();
-        //_inputs.Game.Pause.performed += GoBack;
-        //_inputs.Game.SkipMenu.performed += SkipMenu;
+        skipText.text = $"{_inputs.Menu.SkipMenu.GetBindingDisplayString()} to skip";
     }
 
     private void Start()
@@ -63,16 +62,16 @@ public class MainMenu : MonoBehaviour
         GoBack();
     }
 
-    //private void SkipMenu(InputAction.CallbackContext cxt)
-    //{
-    //    OnClickPlayHandler();
-    //}
+    private void SkipMenu(InputAction.CallbackContext cxt)
+    {
+        OnClickPlayHandler();
+    }
 
-    //private void GoBack(InputAction.CallbackContext cxt)
-    //{
-    //    if (!credits.IsOpen) return;
-    //    GoBack();
-    //}
+    private void GoBack(InputAction.CallbackContext cxt)
+    {
+        if (!credits.IsOpen) return;
+        GoBack();
+    }
 
     private void GoBack()
     {
@@ -121,7 +120,7 @@ public class MainMenu : MonoBehaviour
             buttons[i].button.onClick.RemoveAllListeners();
         }
 
-        //_inputs.Game.Pause.performed -= GoBack;
-        //_inputs.Game.SkipMenu.performed -= SkipMenu;
+        _inputs.Menu.GoBack.performed -= GoBack;
+        _inputs.Menu.SkipMenu.performed -= SkipMenu;
     }
 }

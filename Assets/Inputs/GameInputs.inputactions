@@ -1,0 +1,130 @@
+{
+    "name": "GameInputs",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "0d96567e-d644-41d3-b48a-fa0a0a4c554d",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "83f3f0f3-540a-481f-b76a-e378d4e103e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f4c89b05-2e27-4404-b23d-e6ce045fe064",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "UI",
+            "id": "873e1eeb-97ac-48f1-9692-c84fd88545c8",
+            "actions": [
+                {
+                    "name": "PauseToggle",
+                    "type": "Button",
+                    "id": "7cf0a281-4ace-4bb9-afa5-7c3a2d604172",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "f1c675c9-5a75-40a2-a9c7-db542bf7c885",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1c2f4f9a-90c7-42a0-9a01-76818bfce349",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PauseToggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e44f6462-4c4f-4341-8c1c-ed73f294e335",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "84979082-c69d-47db-afda-a3dc64211635",
+            "actions": [
+                {
+                    "name": "GoBack",
+                    "type": "Button",
+                    "id": "fd8b9e08-b841-4416-b552-6c15cba7e59e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SkipMenu",
+                    "type": "Button",
+                    "id": "146fc28e-f559-4e8d-9fd3-8e60da4f86e7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5ae2b6fe-98c9-4702-a289-dc53bf331aed",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GoBack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "15c7d26e-5d4e-43d0-a9dd-b83f5a48fd53",
+                    "path": "<Keyboard>/f1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SkipMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

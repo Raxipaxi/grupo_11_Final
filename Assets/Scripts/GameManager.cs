@@ -11,12 +11,14 @@ public class GameManager : MonoBehaviour
     [ReadOnly] public UIManager uiManager;
 
     [SerializeField] [ReadOnly] private bool isPaused;
-    //private static MenuesInputs _inputs; // TODO jess: implement new input system
+    private static GameInputs _inputs;
+    private bool won = false;
 
     public event Action<bool> OnPause;
     public event Action OnWin;
 
     public bool IsPaused => isPaused;
+    public GameInputs Inputs => _inputs;
 
     void Awake()
     {
@@ -28,12 +30,9 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
 
-        //if (_inputs == null)
-        //{
-        //    _inputs = new MenuesInputs();
-        //    _inputs.Enable();
-        //    _inputs.Game.Pause.started += ctx => Pause();
-        //}
+        _inputs = new GameInputs();
+        _inputs.Enable();
+        _inputs.UI.PauseToggle.started += ctx => Pause();
 
         isPaused = false;
         uiManager = Instantiate(globalConfig.uiManagerPrefab);
@@ -47,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void Pause()
     {
+        if (won) return;
         isPaused = !isPaused;
         Time.timeScale = isPaused ? 0f : 1f;
         OnPause?.Invoke(isPaused);
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     public void WinGame()
     {
+        won = true;
         Time.timeScale = 0f;
         OnWin?.Invoke();
     }
