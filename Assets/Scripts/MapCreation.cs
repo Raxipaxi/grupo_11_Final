@@ -30,7 +30,6 @@ public class MapCreation : MonoBehaviour
             if(_bricksMap.ContainsKey(bricks[i].transform.position))
                 _bricksMap.Add(bricks[i].transform.position, bricks[i]);
         }
-        //ball.AssignProperties(stageSize, bricks,_slider);
         _slider.AssignProperties(stageSize);
         ball.AssignProperties(stageSize,brickSize.y,_slider,_manager);
 
