@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class Panel : MonoBehaviour
 {
-    public bool IsOpen { get; private set; }
+    [ReadOnly] [SerializeField] private bool isOpen;
+    public bool IsOpen => isOpen;
 
     public virtual void Initialize()
     {
@@ -18,13 +20,13 @@ public class Panel : MonoBehaviour
 
     public virtual void Open()
     {
-        IsOpen = true;
+        isOpen = true;
         gameObject.SetActive(true);
     }
 
     public virtual void Close()
     {
-        IsOpen = false;
+        isOpen = false;
         gameObject.SetActive(false);
     }
 }

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public class PauseMenu : Panel
 {
     [Header("Buttons")]
@@ -21,8 +20,21 @@ public class PauseMenu : Panel
         menuButton.button.onClick.AddListener(OnClickMenuHandler);
         quitButton.button.onClick.AddListener(OnClickQuitHandler);
 
-        GameManager.Instance.OnPause += OnPause;
         warningPopup.Close();
+    }
+
+    public override void Open()
+    {
+        base.Open();
+        resumeButton.button.Select();
+    }
+
+    public override void Close()
+    {
+        base.Close();
+
+        if(warningPopup.IsOpen)
+            warningPopup.Close();
     }
 
     public override void Dispose()
@@ -30,21 +42,6 @@ public class PauseMenu : Panel
         resumeButton.button.onClick.RemoveAllListeners();
         menuButton.button.onClick.RemoveAllListeners();
         quitButton.button.onClick.RemoveAllListeners();
-
-        GameManager.Instance.OnPause -= OnPause;
-    }
-
-    private void OnPause(bool isPause)
-    {
-        if (isPause)
-        {
-            Open();
-            resumeButton.button.Select();
-        }
-        else
-        {
-            Close();
-        }
     }
 
     private void OnClickResumeHandler()

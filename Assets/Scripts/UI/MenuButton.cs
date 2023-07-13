@@ -20,7 +20,7 @@ public class MenuButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     private void Select()
     {
         selectedMarker.SetActive(true);
-        //AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.hoverButton);
+        AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.hoverButton);
     }
 
     public void Deselect()

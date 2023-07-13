@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GlobalConfig
   m_EditorClassIdentifier: 
   mainMenuScene: MainMenu
-  gameScene: Game
+  gameScene: Level1
   uiManagerPrefab: {fileID: 798730798039481524, guid: 5e22c8975bd7ffc4293447ca1d260f0f, type: 3}

@@ -9,6 +9,7 @@ using System.Collections.Generic;
 public class MainMenu : MonoBehaviour
 {
     public GlobalConfig globalConfig;
+    public AudioManager audioManager;
 
     [Header("Screens")]
     public Panel menu;
@@ -38,7 +39,7 @@ public class MainMenu : MonoBehaviour
 
         for (int i = 0; i < buttons.Count; i++)
         {
-            //buttons[i].button.onClick.AddListener(SelectButtonSound);
+            buttons[i].button.onClick.AddListener(SelectButtonSound);
             buttons[i].Deselect();
         }
 
@@ -57,8 +58,7 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        //AudioManager.instance.PlayMusic(AudioManager.instance.soundReferences.mainMenu);
-
+        AudioManager.instance.PlayMusic(AudioManager.instance.soundReferences.mainMenu);
         currentSelectedButton = playButton;
         GoBack();
     }
@@ -81,10 +81,10 @@ public class MainMenu : MonoBehaviour
         SelectButton(currentSelectedButton);
     }
 
-    //private void SelectButtonSound()
-    //{
-    //    AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.selectButton);
-    //}
+    private void SelectButtonSound()
+    {
+        AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.selectButton);
+    }
 
     private void OnClickPlayHandler()
     {

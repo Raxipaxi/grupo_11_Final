@@ -9,6 +9,7 @@ public class UIManager : Panel
 {
     public TMP_Text currentPoints;
     public PauseMenu pauseMenu;
+    public GameObject hud;
     public Popup winPopup;
 
     public override void Initialize()
@@ -21,11 +22,13 @@ public class UIManager : Panel
         winPopup.Close();
 
         GameManager.Instance.OnWin += OnWin;
+        GameManager.Instance.OnPause += OnPause;
     }
 
     public override void Dispose()
     {
         GameManager.Instance.OnWin -= OnWin;
+        GameManager.Instance.OnPause -= OnPause;
         pauseMenu.Dispose();
     }
 
@@ -34,8 +37,23 @@ public class UIManager : Panel
         winPopup.Open();
     }
 
+    public void OnPause(bool paused)
+    {
+        if (paused)
+        {
+            pauseMenu.Open();
+            hud.SetActive(false);
+        }
+        else
+        {
+            pauseMenu.Close();
+            hud.SetActive(true);
+        }
+    }
+
     private void ConfirmWin()
     {
+        //TODO jess: disable gameplay inputs and pause inputs here, only Enter should work
         SceneManager.LoadScene(GameManager.Instance.globalConfig.gameScene);
     }
 }

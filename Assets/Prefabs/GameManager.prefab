@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalConfig: {fileID: 11400000, guid: dc5839b3707e9b0459b150c668d7ec7d, type: 2}
-  uiManager: {fileID: 798730798039481524, guid: 5e22c8975bd7ffc4293447ca1d260f0f, type: 3}
-  <isPaused>k__BackingField: 0
+  uiManager: {fileID: 0}
+  isPaused: 0
