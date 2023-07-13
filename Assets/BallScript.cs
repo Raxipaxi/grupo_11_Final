@@ -95,7 +95,7 @@ public class BallScript : MonoBehaviour
 
     void DetectSlider()
     {
-        if (transform.position.y + radio <= _slider.transform.position.y + _slider.Size.y)
+        if (transform.position.y - radio <= _slider.transform.position.y)
         {
             ChangeDir(_physicsManager.SliderCollision(this,radio).x, _physicsManager.SliderCollision(this,radio).y);
         }
