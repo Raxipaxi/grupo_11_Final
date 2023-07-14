@@ -98,7 +98,7 @@ public class BallScript : MonoBehaviour
 
     void DetectSlider()
     {
-        if (transform.position.y - radio <= _slider.transform.position.y)
+        if (Pos.y - radio <= _slider.PosY)
         {
             ChangeDir(_physicsManager.SliderCollision(this,radio).x, _physicsManager.SliderCollision(this,radio).y);
         }
@@ -106,18 +106,18 @@ public class BallScript : MonoBehaviour
     }
     void DetectBricks()
     {
-        if(transform.position.y < _bricksY){return;}
+        if(Pos.y < _bricksY){return;}
         
         ChangeDir(dir.x * _physicsManager.BrickCollisionCheck(this).x, dir.y * _physicsManager.BrickCollisionCheck(this).y);
     }
     void WallCollision()
     {
-        if (transform.position.x - radio <= 0 || transform.position.x + radio >= _wallLocation.x)
+        if (Pos.x - radio <= 0 || Pos.x + radio >= _wallLocation.x)
         {
             ChangeDir(dir.x * -1, dir.y);
         }
 
-        if (transform.position.y - radio <= 0 ||transform.position.y + radio >= _wallLocation.y)
+        if (Pos.y - radio <= 0 ||Pos.y + radio >= _wallLocation.y)
         {
             ChangeDir(dir.x, dir.y * -1);
         }

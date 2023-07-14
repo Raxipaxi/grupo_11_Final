@@ -17,6 +17,7 @@ namespace Utilities
         private MeshRenderer _renderer;
         private Transform _tr;
         public float PosX => _tr.position.x ;
+        public float PosY => _tr.position.y ;
 
         private void Awake()
         {
