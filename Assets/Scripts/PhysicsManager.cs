@@ -34,24 +34,24 @@ namespace Utilities
 
             return ball.Dir;
         }
-        public Vector2 BrickCollisionCheck(BallScript ballPos, float radio )
+        public Vector2 BrickCollisionCheck(BallScript ball )
         {
-            if (_map.BricksMap.ContainsKey(ballPos.transform.position)) // Estoy en el centro
+            if (_map.BricksMap.ContainsKey(ball.Pos)) // Estoy en el centro
             {
                 return Vector2.down;
             } 
-            if(_map.BricksMap.ContainsKey((Vector2) ballPos.transform.position + _map.BrickSize / 2)) // DER
+            if(_map.BricksMap.ContainsKey((Vector2) ball.Pos + _map.BrickSize / 2)) // DER
             {
                 return new Vector2(1, -1);
             }
 
-            if (_map.BricksMap.ContainsKey((Vector2) ballPos.transform.position + -_map.BrickSize / 2)) // IZQ
+            if (_map.BricksMap.ContainsKey((Vector2) ball.Pos + -_map.BrickSize / 2)) // IZQ
             {
                 return new Vector2(-1, 1);
 
             }
 
-            return ballPos.Speed;
+            return ball.Speed;
         }
     }
 }

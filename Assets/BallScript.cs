@@ -15,11 +15,14 @@ public class BallScript : MonoBehaviour
     private Vector2 dir;
     private MeshRenderer _renderer;
     public Vector2 Dir => dir;
+    private Transform _tr;
+    public Vector2 Pos => _tr.position;
 
     private void Awake()
     {
         _renderer = GetComponent<MeshRenderer>();
         radio = _renderer.bounds.extents.magnitude;
+        _tr = transform;
     }
 
     void Start()
@@ -105,7 +108,7 @@ public class BallScript : MonoBehaviour
     {
         if(transform.position.y < _bricksY){return;}
         
-        ChangeDir(dir.x * _physicsManager.BrickCollisionCheck(this, radio).x, dir.y * _physicsManager.BrickCollisionCheck(this, radio).y);
+        ChangeDir(dir.x * _physicsManager.BrickCollisionCheck(this).x, dir.y * _physicsManager.BrickCollisionCheck(this).y);
     }
     void WallCollision()
     {
