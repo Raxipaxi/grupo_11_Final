@@ -36,8 +36,8 @@ public class MapCreation : MonoBehaviour
     }
 
     private void CalculateDistance()
-    {
-        stageSize = new Vector2(Math.Abs(wallsX[0].transform.position.x - wallsX[1].transform.position.x),
+    { // Ver como conseguir el grosor de la pared en X
+        stageSize = new Vector2(Math.Abs(wallsX[0].transform.position.x - wallsX[1].transform.position.x - 0.5f),
             Math.Abs(wallsY[0].transform.position.y - wallsY[1].transform.position.y));
     }
 }

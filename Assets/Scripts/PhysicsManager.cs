@@ -16,8 +16,8 @@ namespace Utilities
 
         public Vector2 SliderCollision(BallScript ball, float radio)
         {
-            if (ball.transform.position.x + radio >= _slider.transform.position.x + _slider.Size.x / 2 ||
-                ball.transform.position.x + radio <= _slider.transform.position.x - _slider.Size.x / 2)
+            if (ball.transform.position.x + radio <= _slider.PosX + _slider.Size &&
+                ball.transform.position.x - radio >= _slider.PosX - _slider.Size)
             {
                 return new Vector2(ball.Dir.x, Math.Abs(ball.Dir.y));
 

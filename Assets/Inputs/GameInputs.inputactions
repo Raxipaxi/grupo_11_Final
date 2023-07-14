@@ -4,8 +4,41 @@
         {
             "name": "Gameplay",
             "id": "0d96567e-d644-41d3-b48a-fa0a0a4c554d",
-            "actions": [],
-            "bindings": []
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "51a9e589-dc6c-43c0-ba62-f46a51a07073",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "Press",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3ea1eea7-2329-41c5-b643-38370da18168",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "Clamp(max=-1)",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f1f7ab55-6d01-47de-bc6f-992740474f9a",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "Clamp(max=1)",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         },
         {
             "name": "UI",

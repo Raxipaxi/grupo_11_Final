@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
         _inputs = new GameInputs();
         _inputs.Enable();
-        _inputs.Gameplay.Enable();
+       // _inputs.Gameplay.Enable();
         _inputs.UI.Enable();
         _inputs.UI.Pause.started += PauseInput;
         _inputs.Cheats.SkipToWin.performed += ctx => WinGame();
