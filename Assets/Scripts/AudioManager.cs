@@ -24,19 +24,21 @@ public class AudioManager : MonoBehaviour
 
     public void PlayMusic(AudioClip audio)
     {
-        if (audio == null) return;
+        //if (audio == null) return;
 
         if (musicAudioSource.isPlaying)
-        {
             musicAudioSource.Stop();
-        }
 
         musicAudioSource.PlayOneShot(audio);
     }
 
     public void PlaySFXSound(AudioClip audio)
     {
-        if (audio == null) return;
+        //if (audio == null) return;
+
+        if (sfxAudioSource.isPlaying)
+            sfxAudioSource.Stop();
+
         sfxAudioSource.PlayOneShot(audio);
     }
 }

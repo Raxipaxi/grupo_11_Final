@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 854b21e9484863f46b9318056d2556ad, type: 3}
   m_Name: SoundReferences
   m_EditorClassIdentifier: 
-  hoverButton: {fileID: 0}
-  selectButton: {fileID: 0}
-  pauseSound: {fileID: 0}
-  mainMenu: {fileID: 0}
-  playerDeath: {fileID: 0}
-  enemyDeath: {fileID: 0}
-  negativeShootSound: {fileID: 0}
-  playerShoot: {fileID: 0}
-  enemyShoot: {fileID: 0}
-  spawnSound: {fileID: 0}
-  win: {fileID: 0}
-  levelMusic: {fileID: 0}
+  hoverButton: {fileID: 8300000, guid: 235ccbe60ca89044e9c6c16444f83965, type: 3}
+  selectButton: {fileID: 8300000, guid: a42440f1d9cad514fa61fe33b331da7a, type: 3}
+  pauseSound: {fileID: 8300000, guid: 9dd402256fdb8f24cb2f9e88f9b9df65, type: 3}
+  mainMenu: {fileID: 8300000, guid: e8cbf0afab4f181479d6a0a24ad05ef6, type: 3}
+  openPopup: {fileID: 8300000, guid: 439af6b5fd316c34591989a9f04131d7, type: 3}
+  closePopup: {fileID: 8300000, guid: 439af6b5fd316c34591989a9f04131d7, type: 3}
+  brickDestroyed: {fileID: 8300000, guid: 0ce3c4659166ded4c94c29ec4e941ed9, type: 3}
+  ballBounce: {fileID: 8300000, guid: 2469649a01334284b8339f6c41b558ad, type: 3}
+  powerUpGrabbed: {fileID: 8300000, guid: 709730e133a1dd143892e4cf12228df8, type: 3}
+  powerUpPickedUp: {fileID: 8300000, guid: 709730e133a1dd143892e4cf12228df8, type: 3}
+  playerLostBall: {fileID: 8300000, guid: 663a319341ed17444b16f0394b7a87d3, type: 3}
+  win: {fileID: 8300000, guid: 575c9da0afe71c045a184f62a83ba34f, type: 3}
+  levelMusic: {fileID: 8300000, guid: e8cbf0afab4f181479d6a0a24ad05ef6, type: 3}

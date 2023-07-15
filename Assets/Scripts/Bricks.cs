@@ -27,9 +27,13 @@ namespace Utilities
         {
             _hitsLeft--;
             if (_hitsLeft <= 0)
-            {
-                gameObject.SetActive(false);
-            }
+                Die();
+        }
+
+        private void Die()
+        {
+            gameObject.SetActive(false);
+            AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.brickDestroyed);
         }
     }
 }

@@ -18,7 +18,7 @@ public class BallScript : MonoBehaviour
     private Transform _tr;
     public Vector2 Pos => _tr.position;
 
-    private void Awake()
+    private void Awake() //TODO take out awake, start, update. move them to a CustomUpdater
     {
         _renderer = GetComponent<MeshRenderer>();
         radio = _renderer.bounds.extents.magnitude;
@@ -35,6 +35,7 @@ public class BallScript : MonoBehaviour
     {
         dir.x = currDirX ;
         dir.y = currDirY;
+        AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.ballBounce);
     }
     void Update()
     {

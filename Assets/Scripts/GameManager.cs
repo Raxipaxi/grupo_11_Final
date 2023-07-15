@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         uiManager.Initialize();
     }
 
+    void Start()
+    {
+        AudioManager.instance.PlayMusic(AudioManager.instance.soundReferences.levelMusic);
+    }
+
     private void OnDestroy()
     {
         _inputs.Gameplay.Pause.performed -= PauseInput;

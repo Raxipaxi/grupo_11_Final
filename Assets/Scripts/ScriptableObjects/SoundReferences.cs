@@ -14,8 +14,10 @@ public class SoundReferences : ScriptableObject
     public AudioClip closePopup;
 
     [Header("Level")]
-    public AudioClip playerDeath;
     public AudioClip brickDestroyed;
+    public AudioClip ballBounce;
+    public AudioClip powerUpPickedUp;
+    public AudioClip playerLostBall;
 
     [Header("Extras")]
     public AudioClip win;
