@@ -25,5 +25,5 @@ MonoBehaviour:
     title: Sure you want to quit?
     description: Warning! The game has no save system, exiting will make you lose
       all your points!
-  pointsFormat: 00000
+  pointsFormat: 0000000
   timeFormat: mm':'ss

@@ -11,7 +11,7 @@
                     "id": "51a9e589-dc6c-43c0-ba62-f46a51a07073",
                     "expectedControlType": "Axis",
                     "processors": "",
-                    "interactions": "Press",
+                    "interactions": "",
                     "initialStateCheck": true
                 },
                 {
@@ -21,6 +21,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "7a04d2f4-88f8-4b53-91e3-5b77f71ad381",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press",
                     "initialStateCheck": false
                 }
             ],
@@ -57,6 +66,17 @@
                     "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8efa72ed-6fac-489f-a67e-5fc1f7978460",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -65,13 +85,13 @@
             "id": "873e1eeb-97ac-48f1-9692-c84fd88545c8",
             "actions": [
                 {
-                    "name": "Pause",
+                    "name": "GoBack",
                     "type": "Button",
                     "id": "7cf0a281-4ace-4bb9-afa5-7c3a2d604172",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Select",
@@ -88,10 +108,10 @@
                     "name": "",
                     "id": "1c2f4f9a-90c7-42a0-9a01-76818bfce349",
                     "path": "<Keyboard>/escape",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Pause",
+                    "action": "GoBack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

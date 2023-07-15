@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     public event Action<int> OnPointsUpdated;
 
     public bool IsPaused => isPaused;
-    public GameInputs Inputs => _inputs;
 
     void Awake()
     {
@@ -35,8 +34,8 @@ public class GameManager : MonoBehaviour
 
         _inputs = new GameInputs();
         _inputs.Enable();
-        _inputs.UI.Enable();
-        _inputs.UI.Pause.started += PauseInput;
+        _inputs.Gameplay.Enable();
+        _inputs.Gameplay.Pause.started += PauseInput;
         _inputs.Cheats.SkipToWin.performed += ctx => WinGame();
         _inputs.Cheats.AddPoints.performed += ctx => AddPoints(100);
 
@@ -48,7 +47,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDestroy()
     {
-        _inputs.UI.Pause.performed -= PauseInput;
+        _inputs.Gameplay.Pause.performed -= PauseInput;
         _inputs.Cheats.SkipToWin.performed -= ctx => WinGame();
         _inputs.Cheats.AddPoints.performed -= ctx => AddPoints(100);
         uiManager.Dispose();
@@ -62,6 +61,11 @@ public class GameManager : MonoBehaviour
 
     public void Pause(bool value)
     {
+        if(value)
+            _inputs.Gameplay.Disable();
+        else
+            _inputs.Gameplay.Enable();
+
         isPaused = value;
         Time.timeScale = isPaused ? 0f : 1f;
         OnPause?.Invoke(isPaused);

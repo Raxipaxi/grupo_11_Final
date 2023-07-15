@@ -33,7 +33,7 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""id"": ""51a9e589-dc6c-43c0-ba62-f46a51a07073"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
-                    ""interactions"": ""Press"",
+                    ""interactions"": """",
                     ""initialStateCheck"": true
                 },
                 {
@@ -43,6 +43,15 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a04d2f4-88f8-4b53-91e3-5b77f71ad381"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press"",
                     ""initialStateCheck"": false
                 }
             ],
@@ -79,6 +88,17 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8efa72ed-6fac-489f-a67e-5fc1f7978460"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -87,13 +107,13 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
             ""id"": ""873e1eeb-97ac-48f1-9692-c84fd88545c8"",
             ""actions"": [
                 {
-                    ""name"": ""Pause"",
+                    ""name"": ""GoBack"",
                     ""type"": ""Button"",
                     ""id"": ""7cf0a281-4ace-4bb9-afa5-7c3a2d604172"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""Select"",
@@ -110,10 +130,10 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""1c2f4f9a-90c7-42a0-9a01-76818bfce349"",
                     ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": ""Tap"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause"",
+                    ""action"": ""GoBack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -233,9 +253,10 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Shoot = m_Gameplay.FindAction("Shoot", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
+        m_UI_GoBack = m_UI.FindAction("GoBack", throwIfNotFound: true);
         m_UI_Select = m_UI.FindAction("Select", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
@@ -306,12 +327,14 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Shoot;
+    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @GameInputs m_Wrapper;
         public GameplayActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Shoot => m_Wrapper.m_Gameplay_Shoot;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -327,6 +350,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnShoot;
+                @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -337,6 +363,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -345,13 +374,13 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_Pause;
+    private readonly InputAction m_UI_GoBack;
     private readonly InputAction m_UI_Select;
     public struct UIActions
     {
         private @GameInputs m_Wrapper;
         public UIActions(@GameInputs wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Pause => m_Wrapper.m_UI_Pause;
+        public InputAction @GoBack => m_Wrapper.m_UI_GoBack;
         public InputAction @Select => m_Wrapper.m_UI_Select;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
@@ -362,9 +391,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @Pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
-                @Pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
-                @Pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                @GoBack.started -= m_Wrapper.m_UIActionsCallbackInterface.OnGoBack;
+                @GoBack.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnGoBack;
+                @GoBack.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnGoBack;
                 @Select.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSelect;
                 @Select.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSelect;
                 @Select.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSelect;
@@ -372,9 +401,9 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Pause.started += instance.OnPause;
-                @Pause.performed += instance.OnPause;
-                @Pause.canceled += instance.OnPause;
+                @GoBack.started += instance.OnGoBack;
+                @GoBack.performed += instance.OnGoBack;
+                @GoBack.canceled += instance.OnGoBack;
                 @Select.started += instance.OnSelect;
                 @Select.performed += instance.OnSelect;
                 @Select.canceled += instance.OnSelect;
@@ -468,10 +497,11 @@ public partial class @GameInputs : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
-        void OnPause(InputAction.CallbackContext context);
+        void OnGoBack(InputAction.CallbackContext context);
         void OnSelect(InputAction.CallbackContext context);
     }
     public interface IMenuActions

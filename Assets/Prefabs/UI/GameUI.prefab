@@ -1303,7 +1303,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 24.868149, y: 0, z: 31.085205, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2359,10 +2359,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8202343119488535023, guid: ba636a4466e863943b2d2db882b0fa8d, type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 929019875988867279}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba636a4466e863943b2d2db882b0fa8d, type: 3}
 --- !u!114 &1542781666120826698 stripped

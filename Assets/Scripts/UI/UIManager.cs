@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Windows;
 
 public class UIManager : Panel
 {
@@ -80,6 +81,6 @@ public class UIManager : Panel
     private void ConfirmWin()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(GameManager.Instance.globalConfig.gameScene);
+        SceneManager.LoadScene(GameManager.Instance.globalConfig.mainMenuScene);
     }
 }

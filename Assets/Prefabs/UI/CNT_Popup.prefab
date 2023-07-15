@@ -188,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b643cc57cfb9404a80f23885ca35c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
   isOpen: 0
   txtTitle: {fileID: 5533666978122886045}
   txtDescription: {fileID: 1780440444404399995}
@@ -441,8 +442,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 21.7604, y: -153.9}
-  m_SizeDelta: {x: 654.4851, y: 100}
+  m_AnchoredPosition: {x: -0.0068, y: -153.9}
+  m_SizeDelta: {x: 804.7487, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6919323362560780645
 MonoBehaviour:
@@ -457,13 +458,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
+    m_Left: 25
+    m_Right: 25
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
+  m_Spacing: 80
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0

@@ -18,10 +18,16 @@ public class PauseMenu : Panel
 
     private List<MenuButton> buttons = new List<MenuButton>();
     private MenuButton currentButton;
+    private static GameInputs _inputs;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _inputs = new GameInputs();
+        _inputs.Enable();
+        _inputs.UI.GoBack.started += PauseInput;
+
         buttons.Add(resumeButton);
         resumeButton.button.onClick.AddListener(OnClickResumeHandler);
 
@@ -49,6 +55,8 @@ public class PauseMenu : Panel
 
     public override void Dispose()
     {
+        _inputs.UI.GoBack.started -= PauseInput;
+
         for (int i = 0; i < buttons.Count; i++)
         {
             buttons[i].button.onClick.RemoveAllListeners();
@@ -66,8 +74,28 @@ public class PauseMenu : Panel
     public override void Open()
     {
         base.Open();
+        _inputs.UI.Enable();
         currentButton = resumeButton;
         SetSelectedButton();
+    }
+
+    public override void Close()
+    {
+        base.Close();
+        _inputs.UI.Disable();
+    }
+
+    private void PauseInput(InputAction.CallbackContext cxt)
+    {
+        if (warningPopup.IsOpen)
+        {
+            warningPopup.Close();
+            SetSelectedButton();
+        }
+        else
+        {
+            GameManager.Instance.Pause(false);
+        }
     }
 
     private void SetSelectedButton()

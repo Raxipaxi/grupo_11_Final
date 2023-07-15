@@ -31,8 +31,9 @@ public class Panel : MonoBehaviour
 
         if (hasCanvas)
             canvas.enabled = true;
+        else
+            gameObject.SetActive(true);
 
-        gameObject.SetActive(true);
         OnOpen?.Invoke();
     }
 
@@ -42,8 +43,9 @@ public class Panel : MonoBehaviour
 
         if(hasCanvas)
             canvas.enabled = false;
+        else
+            gameObject.SetActive(false);
 
-        gameObject.SetActive(false);
         OnClose?.Invoke();
     }
 }
