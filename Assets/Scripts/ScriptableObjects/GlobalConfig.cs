@@ -25,4 +25,8 @@ public class GlobalConfig : ScriptableObject
     public PopupInfo mainMenuPopup;
     public PopupInfo exitPopup;
 
+    [Header("HUD")]
+    public string pointsFormat = "00000";
+    public string timeFormat = "mm':'ss";
+
 }

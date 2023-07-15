@@ -21,6 +21,7 @@ public class PauseMenu : Panel
 
     public override void Initialize()
     {
+        base.Initialize();
         buttons.Add(resumeButton);
         resumeButton.button.onClick.AddListener(OnClickResumeHandler);
 

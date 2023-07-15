@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenuScene: MainMenu
   gameScene: Level1
-  uiManagerPrefab: {fileID: 798730798039481524, guid: 5e22c8975bd7ffc4293447ca1d260f0f, type: 3}
+  uiManagerPrefab: {fileID: 2797996530199104248, guid: 1b5b568fb52c312438a40701e86bd3cb, type: 3}
   restartPopup:
     title: Sure you want to restart?
     description: Restarting the level will loose the current points!
@@ -25,3 +25,5 @@ MonoBehaviour:
     title: Sure you want to quit?
     description: Warning! The game has no save system, exiting will make you lose
       all your points!
+  pointsFormat: 00000
+  timeFormat: mm':'ss

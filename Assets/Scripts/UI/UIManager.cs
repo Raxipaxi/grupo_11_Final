@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -7,13 +8,19 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : Panel
 {
-    public TMP_Text txtCurrentPoints;
+    [Header("References")]
     public PauseMenu pauseMenu;
     public Panel hud;
     public Popup winPopup;
+    
+    [Header("HUD info")]
+    public TMP_Text txtCurrentPoints;
+    public TMP_Text txtCurrentLostTimes;
+    public TMP_Text txtTime;
 
     public override void Initialize()
     {
+        base.Initialize();
         pauseMenu.Initialize();
         pauseMenu.Close();
 
@@ -57,7 +64,17 @@ public class UIManager : Panel
 
     public void OnPointsUpdate(int currentPoints)
     {
-        txtCurrentPoints.text = currentPoints.ToString(); //TODO jess: set string format!!!
+        txtCurrentPoints.text = currentPoints.ToString(GameManager.Instance.globalConfig.pointsFormat);
+    }
+
+    public void UpdateTime(float currentTime)
+    {
+        txtTime.text = TimeSpan.FromSeconds(currentTime).ToString(GameManager.Instance.globalConfig.timeFormat);
+    }
+
+    public void UpdateLostTimes(int currentLostTimes)
+    {
+        txtCurrentLostTimes.text = currentLostTimes.ToString();
     }
 
     private void ConfirmWin()

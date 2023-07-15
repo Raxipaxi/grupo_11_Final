@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
 
         _inputs = new GameInputs();
         _inputs.Enable();
-       // _inputs.Gameplay.Enable();
         _inputs.UI.Enable();
         _inputs.UI.Pause.started += PauseInput;
         _inputs.Cheats.SkipToWin.performed += ctx => WinGame();
@@ -64,12 +63,6 @@ public class GameManager : MonoBehaviour
     public void Pause(bool value)
     {
         isPaused = value;
-
-        if (isPaused)
-            _inputs.Gameplay.Disable();
-        else
-            _inputs.Gameplay.Enable();
-
         Time.timeScale = isPaused ? 0f : 1f;
         OnPause?.Invoke(isPaused);
     }
