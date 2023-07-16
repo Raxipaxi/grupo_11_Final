@@ -1,20 +1,24 @@
-using System;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Utilities
 {
+    //BORRAR COMENTARIOS
     public class Slider : MonoBehaviour
     {
         private PlayerInputs _inputs;
         
         [SerializeField] private float speed;
         private float _currSpeed;
-        [SerializeField] private Vector2 size;
+        private Vector2 size;
+        [SerializeField] private GameObject center;
+        [SerializeField] private GameObject left;
+        [SerializeField] private GameObject right;
        public float Size => size.x/2;
+       public float Center => center.transform.localScale.x/2;
+       public float Side => right.transform.localScale.x/2;
         private Vector2 _wallLocation;
-        private BallScript _currBall;
-        private MeshRenderer _renderer;
+        // private BallScript _currBall;
+        // private MeshRenderer _renderer;
         private Transform _tr;
         public float PosX => _tr.position.x ;
         public float PosY => _tr.position.y ;
@@ -22,9 +26,11 @@ namespace Utilities
         private void Awake()
         {
             _inputs = GetComponent<PlayerInputs>();
-            _renderer = GetComponent<MeshRenderer>();
+          //  _renderer = GetComponent<MeshRenderer>();
             _tr = transform;
+            size.x = center.transform.localScale.x + right.transform.localScale.x + left.transform.localScale.x;
 
+            print("Lo tamaño e " + size.x);
         }
 
         private void Start()
@@ -49,8 +55,8 @@ namespace Utilities
 
         public void Attach(BallScript currBall)
         {
-            _currBall = currBall;
-            currBall.transform.parent = transform;
+            // _currBall = currBall;
+            // currBall.transform.parent = transform;
         }
         void Inputs()
         {

@@ -3,7 +3,7 @@ using Utilities;
 
 public class BallScript : MonoBehaviour
 {
-    [SerializeField] private float radio = 0.5f;
+    private float radio;
     [SerializeField] private Vector2 speed;
     public Vector2 Speed => speed;
     private Vector2 _wallLocation;
@@ -13,16 +13,16 @@ public class BallScript : MonoBehaviour
     private Slider _slider;
     private PhysicsManager _physicsManager;
     private Vector2 dir;
-    private MeshRenderer _renderer;
     public Vector2 Dir => dir;
     private Transform _tr;
     public Vector2 Pos => _tr.position;
 
     private void Awake() //TODO take out awake, start, update. move them to a CustomUpdater
     {
-        _renderer = GetComponent<MeshRenderer>();
-        radio = _renderer.bounds.extents.magnitude;
+
         _tr = transform;
+        radio = _tr.localScale.x;
+        print("Radio " + radio);
     }
 
     void Start()

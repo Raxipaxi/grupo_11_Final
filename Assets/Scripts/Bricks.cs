@@ -14,7 +14,7 @@ namespace Utilities
         private void Awake()
         {
             _mesh = GetComponent<Renderer>();
-            _size = _mesh.bounds.extents;
+            _size = _mesh.transform.localScale;
         }
 
         private void Start()

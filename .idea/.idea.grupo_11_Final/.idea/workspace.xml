@@ -5,13 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9652f4a-f9dc-46da-bd4c-1035a094ee82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerInputs.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerInputs.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.grupo_11_Final/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.grupo_11_Final/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Inputs/GameInputs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Inputs/GameInputs.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Inputs/GameInputs.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Inputs/GameInputs.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/BallScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BallScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Blue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Blue.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Color 1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Color 1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Color 2.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Color 2.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Grey.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Grey.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/OneHitBrick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/OneHitBrick.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/TwoHitsBrick.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/TwoHitsBrick.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bricks.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bricks.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PhysicsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PhysicsManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +44,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Discover.Launch.Via.Unity": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -91,10 +99,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="34952">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="34952" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -120,6 +128,7 @@
       <workItem from="1689161180379" duration="985000" />
       <workItem from="1689196995911" duration="12073000" />
       <workItem from="1689288063999" duration="2502000" />
+      <workItem from="1689468042790" duration="3992000" />
     </task>
     <servers />
   </component>

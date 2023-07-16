@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
 
+
 namespace Utilities
 {
-    public class PhysicsManager
+    public class PhysicsManager:MonoBehaviour
     {
         private Slider _slider;
         private MapCreation _map;
@@ -16,10 +17,25 @@ namespace Utilities
 
         public Vector2 SliderCollision(BallScript ball, float radio)
         {
-            if (ball.transform.position.x + radio <= _slider.PosX + _slider.Size &&
-                ball.transform.position.x - radio >= _slider.PosX - _slider.Size)
+            if (ball.Pos.x - radio <= _slider.PosX + _slider.Size &&
+                ball.Pos.x + radio >= _slider.PosX - _slider.Size)
             {
+                float ballPosX = ball.Pos.x;
+                if (ballPosX < _slider.PosX - _slider.Center ||
+                    ballPosX > _slider.PosX + _slider.Center)
+                {
+                    print("cotadito");
+                    return new Vector2(ball.Dir.x - 0.25f, Math.Abs(ball.Dir.y));
+                }
+
+                print("Centro");
+       
                 return new Vector2(ball.Dir.x, Math.Abs(ball.Dir.y));
+                 
+                    
+                
+
+                
 
             }
             // if (ball.transform.position.x + radio <= _slider.transform.position.x - _slider.Size.x) // Si toco la mitad del lado izquierdo (negativo) me voy para x en el lado izquierdo
