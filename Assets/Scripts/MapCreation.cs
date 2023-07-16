@@ -16,12 +16,12 @@ public class MapCreation : MonoBehaviour
     [SerializeField] private BallScript ball;
     [SerializeField] private Slider _slider;
     [SerializeField] private Bricks[] bricks;
-    private PhysicsManager _manager;
+    [SerializeField]private PhysicsManager _manager;
 
     private void Awake()
     {
         CalculateDistance();
-        _manager = new PhysicsManager(_slider, this);
+        _manager.Initialize(_slider,this);
     }
     private void Start()
     {

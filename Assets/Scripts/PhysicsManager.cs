@@ -9,7 +9,7 @@ namespace Utilities
         private Slider _slider;
         private MapCreation _map;
 
-         public PhysicsManager(Slider slider, MapCreation mapCreator)
+         public void Initialize (Slider slider, MapCreation mapCreator)
         {
             _slider = slider;
             _map = mapCreator;
@@ -54,20 +54,23 @@ namespace Utilities
         {
             if (_map.BricksMap.ContainsKey(ball.Pos)) // Estoy en el centro
             {
-                return Vector2.down;
+                return new Vector2(ball.Dir.x, Math.Abs(-ball.Dir.y));
+
             } 
             if(_map.BricksMap.ContainsKey((Vector2) ball.Pos + _map.BrickSize / 2)) // DER
             {
-                return new Vector2(1, -1);
+                return new Vector2(ball.Dir.x - 0.25f, Math.Abs(-ball.Dir.y));
+
             }
 
             if (_map.BricksMap.ContainsKey((Vector2) ball.Pos + -_map.BrickSize / 2)) // IZQ
             {
-                return new Vector2(-1, 1);
+                return new Vector2(ball.Dir.x - 0.25f, Math.Abs(-ball.Dir.y));
+
 
             }
 
-            return ball.Speed;
+            return ball.Dir;
         }
     }
 }
