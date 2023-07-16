@@ -16,13 +16,18 @@ namespace Utilities
         public void Hit()
         {
             _hitsLeft--;
+            
             if (_hitsLeft <= 0)
+            {
+                PhysicsManager.Instance.UnList(this);
                 Die();
+            }
         }
         
         private void Die()
         {
             gameObject.SetActive(false);
+            GameManager.Instance.AddPoints(100*_data.Hits);
             AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.brickDestroyed);
         }
     }

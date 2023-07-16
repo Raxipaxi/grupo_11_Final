@@ -23,7 +23,6 @@ namespace Utilities
             _inputs = GetComponent<PlayerInputs>();
             size.x = center.transform.localScale.x + right.transform.localScale.x + left.transform.localScale.x;
 
-            print("Lo tamaño e " + size.x);
         }
 
         protected override void Start()
@@ -36,7 +35,6 @@ namespace Utilities
         {
             base.UpdateItems();
             Inputs();
-
         }
 
         public void AssignProperties(Entity lwall, Entity rwall)
@@ -52,12 +50,11 @@ namespace Utilities
         }
         void Move(int dir)
         {
-            
-            if (PosX- SizeX <= _lWall.PosX + _lWall.SizeX ||PosX + SizeX >= _rWall.PosX - _rWall.SizeX)
+            Vector3 nextPos = _tr.position + _tr.right * _currSpeed * dir * Time.deltaTime ;
+            if (!(nextPos.x- SizeX < _lWall.PosX + _lWall.SizeX || nextPos.x + SizeX > _rWall.PosX - _rWall.SizeX))
             {
-                return;
+                _tr.position = nextPos;
             }
-            transform.position += transform.right * _currSpeed * dir * Time.deltaTime;
         }
         
     }

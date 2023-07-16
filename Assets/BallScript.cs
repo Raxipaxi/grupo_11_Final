@@ -5,14 +5,15 @@ using Utilities;
 public class BallScript : GameplayUpdateBehaviour
 {
     public float radio { get; private set; }
-    [SerializeField] private Vector2 speed;
-    public Vector2 Speed => speed;
+    [SerializeField] private float speed;
+    public float Speed => speed;
     private Slider _slider;
     private PhysicsManager _physicsManager;
     private Vector2 dir;
-    public Vector2 Dir => dir;
+    public Vector3 Dir => dir;
     private Transform _tr;
     public Vector2 Pos => _tr.position;
+    private Vector3 _NextDir;
     [SerializeField] private float radioScaler;
 
     private Vector2 prevDir;
@@ -52,7 +53,11 @@ public class BallScript : GameplayUpdateBehaviour
 
     void Move()
     {
-        transform.position += new Vector3(speed.x* dir.x, speed.y * dir.y, 0)  * Time.deltaTime;
+        Vector3 nextPosition = _tr.position;
+        PhysicsManager.Instance.WallCollision(nextPosition + Dir * (Speed * Time.deltaTime));
+
+       nextPosition += Dir * (Speed * Time.deltaTime);
+       _tr.position = nextPosition;
     }
     
 }
