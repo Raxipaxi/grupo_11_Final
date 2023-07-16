@@ -7,7 +7,8 @@ namespace Utilities.Parents
         protected Transform _tr;
         public float PosX => _tr.position.x ;
         public float PosY => _tr.position.y ;
-        public float Size => size.x/2;
+        public float SizeX => size.x/2;
+        public float SizeY => size.y/2;
 
         protected Vector2 size;
 

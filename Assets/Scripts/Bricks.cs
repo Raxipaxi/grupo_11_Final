@@ -1,24 +1,20 @@
 using System;
 using UnityEngine;
+using Utilities.Parents;
 
 namespace Utilities
 {
-    public class Bricks : MonoBehaviour
+    public class Bricks : Entity
     {
         [SerializeField]private BricksSO _data;
         private Renderer _mesh;
-        private Vector2 _size;
-        public float Size => _size.x/2;
         private int _hitsLeft;
-        private Transform _tr;
-        public float PosX => _tr.position.x ;
-        public float PosY => _tr.position.y ;
 
 
         private void Awake()
         {
             _mesh = GetComponent<Renderer>();
-            _size = _mesh.transform.localScale;
+            size = _mesh.transform.localScale;
             _tr = transform;
 
         }

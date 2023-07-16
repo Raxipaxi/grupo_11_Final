@@ -45,12 +45,12 @@ namespace Utilities
 
         public void SliderCollision()
         {
-            if (_ball.Pos.y - _ball.radio > _slider.PosY)
+            if (_ball.Pos.y - _ball.radio > _slider.PosY + _slider.SizeY)
             {
                 return;
             }
-            if (_ball.Pos.x - _ball.radio <= _slider.PosX + _slider.Size &&
-                _ball.Pos.x + _ball.radio >= _slider.PosX - _slider.Size)
+            if (_ball.Pos.x - _ball.radio <= _slider.PosX + _slider.SizeX &&
+                _ball.Pos.x + _ball.radio >= _slider.PosX - _slider.SizeX)
             {
                 float ballPosX = _ball.Pos.x;
                 if (ballPosX < _slider.PosX - _slider.Center ||
@@ -72,15 +72,17 @@ namespace Utilities
         {
             foreach (Bricks bricks in _bricksList)
             {
-                if (_ball.Pos.y - _ball.radio > _slider.PosY)
+                if (_ball.Pos.y - _ball.radio > bricks.PosY + bricks.SizeY ||
+                    _ball.Pos.y + _ball.radio < bricks.PosY - bricks.SizeY)
                 {
-                    return;
+                    continue;
                 }
-                if (_ball.Pos.x - _ball.radio <= bricks.PosX + bricks.Size &&
-                    _ball.Pos.x + _ball.radio >= bricks.PosX - bricks.Size)
+                if (_ball.Pos.x - _ball.radio <= bricks.PosX + bricks.SizeX &&
+                    _ball.Pos.x + _ball.radio >= bricks.PosX - bricks.SizeX)
                 {
-                    bricks.Hit();
                     _ball.ChangeDir(_ball.Dir.x, -_ball.Dir.y);
+                    bricks.Hit();
+                    return;
                 }
             }
         }

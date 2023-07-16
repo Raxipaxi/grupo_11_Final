@@ -13,6 +13,7 @@ public class BallScript : GameplayUpdateBehaviour
     public Vector2 Dir => dir;
     private Transform _tr;
     public Vector2 Pos => _tr.position;
+    [SerializeField] private float radioScaler;
 
     private Vector2 prevDir;
 
@@ -20,7 +21,7 @@ public class BallScript : GameplayUpdateBehaviour
     {
 
         _tr = transform;
-        radio = _tr.localScale.x;
+        radio = _tr.localScale.x * radioScaler;
         print("Radio " + radio);
     }
 

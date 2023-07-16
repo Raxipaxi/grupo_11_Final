@@ -55,7 +55,7 @@ namespace Utilities
         void Move(int dir)
         {
             
-            if ((PosX + Size >= _wallLocation.x && dir > 0) || (PosX - Size <= 0 && dir < 0))
+            if ((PosX + SizeX >= _wallLocation.x && dir > 0) || (PosX - SizeX <= 0 && dir < 0))
             {
                 return;
             }

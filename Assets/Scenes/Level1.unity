@@ -700,7 +700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e76b78f3be0f4e7e9dab70c4cbfb157f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framerate: 80
+  framerate: 65
   printFramerateActualization: 0
   checkForUpdates: 1
 --- !u!114 &122661076
@@ -5397,6 +5397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   needsUpdate: 1
   speed: {x: 5, y: 5}
+  radioScaler: 1
 --- !u!4 &1956100927 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 423946552486832296, guid: 31255cfe60e1e6b45ae94371c1039c9c, type: 3}
