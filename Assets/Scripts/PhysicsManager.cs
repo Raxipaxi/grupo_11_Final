@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using CustomUpdateManagerNSP;
 using UnityEngine;
+using Utilities.Parents;
 
 
 namespace Utilities
@@ -9,17 +10,19 @@ namespace Utilities
     public class PhysicsManager:PhysicsUpdateBehaviour
     {
         private Slider _slider;
-        private MapCreation _map;
         private List<Bricks> _bricksList;
         private BallScript _ball;
-        private Vector2 _wallLocation;
-        public void Initialize (Vector2 wallLocation,BallScript ballScript,Slider slider, MapCreation mapCreator, List<Bricks> bricksList)
+        private Entity _rWall;
+        private Entity _lWall;
+        private Entity _wallY;
+        public void Initialize (Entity Rwall,Entity Lwall, Entity wallY,BallScript ballScript,Slider slider, List<Bricks> bricksList)
         {
             _slider = slider;
-            _map = mapCreator;
             _bricksList = bricksList;
             _ball = ballScript;
-            _wallLocation = wallLocation;
+            _rWall = Rwall;
+            _lWall = Lwall;
+            _wallY = wallY;
         }
         protected override void UpdateItems()
         {
@@ -31,11 +34,11 @@ namespace Utilities
         }
         public void WallCollision()
         {
-            if (_ball.Pos.x - _ball.radio <= 0 ||_ball.Pos.x + _ball.radio >= _wallLocation.x)
+            if (_ball.Pos.x - _ball.radio <= _lWall.PosX + _lWall.SizeX ||_ball.Pos.x + _ball.radio >= _rWall.PosX - _rWall.SizeX)
             {
                 _ball.ChangeDir(-_ball.Dir.x, _ball.Dir.y);
             }
-            else if (_ball.Pos.y - _ball.radio <= 0 ||_ball.Pos.y + _ball.radio >= _wallLocation.y)
+            else if (_ball.Pos.y - _ball.radio <= 0 ||_ball.Pos.y + _ball.radio >= _wallY.PosY - _wallY.SizeY)
             {
                 _ball.ChangeDir(_ball.Dir.x, -_ball.Dir.y);
             }

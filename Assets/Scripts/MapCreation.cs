@@ -2,12 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utilities;
+using Utilities.Parents;
 
 public class MapCreation : MonoBehaviour
 {
-    [SerializeField] private Vector2 stageSize;
-    [SerializeField] private GameObject[] wallsX;
-    [SerializeField] private GameObject[] wallsY;
+    [SerializeField] private Entity LwallX;
+    [SerializeField] private Entity RwallX;
+    [SerializeField] private Entity wallY;
     [field: SerializeField] public List<Bricks> BricksList;
     [SerializeField] private BallScript ball;
     [SerializeField] private Slider _slider;
@@ -15,18 +16,18 @@ public class MapCreation : MonoBehaviour
 
     private void Awake()
     {
-        CalculateDistance();
-        _manager.Initialize(stageSize,ball,_slider, this, BricksList);
+        // CalculateDistance();
+        _manager.Initialize(RwallX,LwallX,wallY,ball,_slider, BricksList);
     }
     private void Start()
     {
-        _slider.AssignProperties(stageSize);
+        _slider.AssignProperties(LwallX, RwallX);
 
     }
 
-    private void CalculateDistance()
-    { // Ver como conseguir el grosor de la pared en X
-        stageSize = new Vector2(Math.Abs(wallsX[0].transform.position.x - wallsX[1].transform.position.x - 0.5f),
-            Math.Abs(wallsY[0].transform.position.y - wallsY[1].transform.position.y));
-    }
+    // private void CalculateDistance()
+    // { // Ver como conseguir el grosor de la pared en X
+    //     stageSize = new Vector2(Math.Abs(wallsX[0].transform.position.x - wallsX[1].transform.position.x - 0.5f),
+    //         Math.Abs(wallsY[0].transform.position.y - wallsY[1].transform.position.y));
+    // }
 }

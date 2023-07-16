@@ -14,36 +14,35 @@ namespace Utilities
         [SerializeField] private GameObject left;
         [SerializeField] private GameObject right;
         public float Center => center.transform.localScale.x/2;
-        private Vector2 _wallLocation;
+        private Entity _rWall;
+        private Entity _lWall;
 
-
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             _inputs = GetComponent<PlayerInputs>();
-            _tr = transform;
             size.x = center.transform.localScale.x + right.transform.localScale.x + left.transform.localScale.x;
 
             print("Lo tamaño e " + size.x);
         }
 
-        private void Start()
+        protected override void Start()
         {
+            base.Start();
             _currSpeed = speed;
         }
 
-        private void Update()
+        protected override void UpdateItems()
         {
+            base.UpdateItems();
             Inputs();
+
         }
 
-        public void GetRange()
+        public void AssignProperties(Entity lwall, Entity rwall)
         {
-            
-        }
-
-        public void AssignProperties(Vector2 wallLocation)
-        {
-            _wallLocation = wallLocation;
+            _rWall = rwall;
+            _lWall = lwall;
         }
         void Inputs()
         {
@@ -51,11 +50,10 @@ namespace Utilities
 
             Move(_inputs.Dir);
         }
-
         void Move(int dir)
         {
             
-            if ((PosX + SizeX >= _wallLocation.x && dir > 0) || (PosX - SizeX <= 0 && dir < 0))
+            if (PosX- SizeX <= _lWall.PosX + _lWall.SizeX ||PosX + SizeX >= _rWall.PosX - _rWall.SizeX)
             {
                 return;
             }
