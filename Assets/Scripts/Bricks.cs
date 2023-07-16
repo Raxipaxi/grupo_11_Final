@@ -8,18 +8,22 @@ namespace Utilities
         [SerializeField]private BricksSO _data;
         private Renderer _mesh;
         private Vector2 _size;
-        public Vector2 Size => _size;
+        public float Size => _size.x/2;
         private int _hitsLeft;
+        private Transform _tr;
+        public float PosX => _tr.position.x ;
+        public float PosY => _tr.position.y ;
+
 
         private void Awake()
         {
             _mesh = GetComponent<Renderer>();
             _size = _mesh.transform.localScale;
-        }
+            _tr = transform;
 
+        }
         private void Start()
         {
-            _mesh.material.SetColor("_Color",_data.Color);
             _hitsLeft = _data.Hits;
         }
 
@@ -29,7 +33,7 @@ namespace Utilities
             if (_hitsLeft <= 0)
                 Die();
         }
-
+        
         private void Die()
         {
             gameObject.SetActive(false);

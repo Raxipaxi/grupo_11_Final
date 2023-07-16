@@ -1,92 +1,88 @@
 using System;
 using System.Collections.Generic;
+using CustomUpdateManagerNSP;
 using UnityEngine;
 
 
 namespace Utilities
 {
-    public class PhysicsManager:MonoBehaviour
+    public class PhysicsManager:PhysicsUpdateBehaviour
     {
         private Slider _slider;
         private MapCreation _map;
         private List<Bricks> _bricksList;
-         public void Initialize (Slider slider, MapCreation mapCreator, List<Bricks> bricksList)
+        private BallScript _ball;
+        private Vector2 _wallLocation;
+        public void Initialize (Vector2 wallLocation,BallScript ballScript,Slider slider, MapCreation mapCreator, List<Bricks> bricksList)
         {
             _slider = slider;
             _map = mapCreator;
             _bricksList = bricksList;
+            _ball = ballScript;
+            _wallLocation = wallLocation;
+        }
+        protected override void UpdateItems()
+        {
+            base.UpdateItems();
+            WallCollision();
+            SliderCollision();
+            BrickCollisionCheck();
+            
+        }
+        public void WallCollision()
+        {
+            if (_ball.Pos.x - _ball.radio <= 0 ||_ball.Pos.x + _ball.radio >= _wallLocation.x)
+            {
+                _ball.ChangeDir(-_ball.Dir.x, _ball.Dir.y);
+            }
+            else if (_ball.Pos.y - _ball.radio <= 0 ||_ball.Pos.y + _ball.radio >= _wallLocation.y)
+            {
+                _ball.ChangeDir(_ball.Dir.x, -_ball.Dir.y);
+            }
+
         }
 
-        public Vector2 SliderCollision(BallScript ball, float radio)
+
+        public void SliderCollision()
         {
-            if (ball.Pos.x - radio <= _slider.PosX + _slider.Size &&
-                ball.Pos.x + radio >= _slider.PosX - _slider.Size)
+            if (_ball.Pos.y - _ball.radio > _slider.PosY)
             {
-                float ballPosX = ball.Pos.x;
+                return;
+            }
+            if (_ball.Pos.x - _ball.radio <= _slider.PosX + _slider.Size &&
+                _ball.Pos.x + _ball.radio >= _slider.PosX - _slider.Size)
+            {
+                float ballPosX = _ball.Pos.x;
                 if (ballPosX < _slider.PosX - _slider.Center ||
                     ballPosX > _slider.PosX + _slider.Center)
                 {
                     print("cotadito");
-                    return new Vector2(ball.Dir.x - 0.25f, Math.Abs(ball.Dir.y));
+                    _ball.ChangeDir(_ball.Dir.x - 0.25f, Math.Abs(_ball.Dir.y));
+                }
+                else
+                {
+                    _ball.ChangeDir(_ball.Dir.x, Math.Abs(_ball.Dir.y));
+                    
+                    print("Centro");
                 }
 
-                print("Centro");
-       
-                return new Vector2(ball.Dir.x, Math.Abs(ball.Dir.y));
             }
-            // if (ball.transform.position.x + radio <= _slider.transform.position.x - _slider.Size.x) // Si toco la mitad del lado izquierdo (negativo) me voy para x en el lado izquierdo
-            // {
-            //     
-            //     return new Vector2(ball.Dir.x, Math.Abs(ball.Dir.y));
-            // }
-            // if (ball.transform.position.x + radio >= _slider.transform.position.x  + _slider.Size.x)
-            // {
-            //         return  new Vector2(ball.Dir.x, Math.Abs(ball.Dir.y));
-            // }
-
-            return ball.Dir;
         }
-        public Vector2 BrickCollisionCheck(BallScript ball, float radio)
+        public void BrickCollisionCheck()
         {
-            // for (int i = 0; i < _bricksList.Count; i++)
-            // {
-            //     Bricks currBrick = _bricksList[i];
-            //     if (ball.Pos.x - radio <= currBrick.PosX + _slider.Size &&
-            //         ball.Pos.x + radio >= currBrick.PosX - _slider.Size)
-            //     {
-            //         float ballPosX = ball.Pos.x;
-            //         if (ballPosX < currBrick.PosX - currBrick.Center ||
-            //             ballPosX > currBrick.PosX + currBrick.Center)
-            //         {
-            //             print("cotadito");
-            //             return new Vector2(ball.Dir.x - 0.25f, Math.Abs(ball.Dir.y));
-            //         }
-            //
-            //         print("Centro");
-            //
-            //         return new Vector2(ball.Dir.x, Math.Abs(ball.Dir.y));
-            //     }
-            // }
-
-            // if (_map.BricksMap.ContainsKey(ball.Pos)) // Estoy en el centro
-            // {
-            //     return new Vector2(ball.Dir.x, Math.Abs(-ball.Dir.y));
-            //
-            // } 
-            // if(_map.BricksMap.ContainsKey((Vector2) ball.Pos + _map.BrickSize / 2)) // DER
-            // {
-            //     return new Vector2(ball.Dir.x - 0.25f, Math.Abs(-ball.Dir.y));
-            //
-            // }
-            //
-            // if (_map.BricksMap.ContainsKey((Vector2) ball.Pos + -_map.BrickSize / 2)) // IZQ
-            // {
-            //     return new Vector2(ball.Dir.x - 0.25f, Math.Abs(-ball.Dir.y));
-            //
-            //
-            // }
-
-            return ball.Dir;
+            foreach (Bricks bricks in _bricksList)
+            {
+                if (_ball.Pos.y - _ball.radio > _slider.PosY)
+                {
+                    return;
+                }
+                if (_ball.Pos.x - _ball.radio <= bricks.PosX + bricks.Size &&
+                    _ball.Pos.x + _ball.radio >= bricks.PosX - bricks.Size)
+                {
+                    bricks.Hit();
+                    _ball.ChangeDir(_ball.Dir.x, -_ball.Dir.y);
+                }
+            }
         }
     }
 }

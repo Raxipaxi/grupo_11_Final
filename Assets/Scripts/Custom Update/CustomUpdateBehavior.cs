@@ -2,12 +2,13 @@ using CustomUpdateManagerNSP;
 using UnityEngine;
 
 public abstract class CustomUpdateBehavior : MonoBehaviour
-{ 
+{
     // Custom Update Manager checks this bool before calling UpdateMe
     public bool needsUpdate = true;
     public bool NeedsUpdate => needsUpdate;
 
     protected CustomUpdateManager _manager;
+
     protected virtual void Start()
     {
         if (needsUpdate)

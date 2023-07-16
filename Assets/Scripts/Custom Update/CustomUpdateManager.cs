@@ -19,10 +19,7 @@ namespace CustomUpdateManagerNSP
                 return;
             }
 
-            if (printFramerateActualization)
-            {
-                print("Update");
-            }
+
 
             ;
             //currentframesDisplayed++;
@@ -31,7 +28,14 @@ namespace CustomUpdateManagerNSP
             for (int i = 0; i < count; i++)
             {
                 if (customUpdateMonoList[i].NeedsUpdate)
-                    customUpdateMonoList[i].UpdateMe();
+                    if (CheckForPause())
+                    {
+                        if (printFramerateActualization)
+                        {
+                            print("Update");
+                        }
+                        customUpdateMonoList[i].UpdateMe();
+                    }
             }
 
         }

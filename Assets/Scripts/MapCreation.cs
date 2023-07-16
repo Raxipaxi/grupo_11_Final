@@ -6,25 +6,21 @@ using Utilities;
 public class MapCreation : MonoBehaviour
 {
     [SerializeField] private Vector2 stageSize;
-    public Vector2 StageSize => stageSize;
     [SerializeField] private GameObject[] wallsX;
     [SerializeField] private GameObject[] wallsY;
-    [SerializeField] private Vector2 brickSize;
-    public Vector2 BrickSize => brickSize;
     [field: SerializeField] public List<Bricks> BricksList;
     [SerializeField] private BallScript ball;
     [SerializeField] private Slider _slider;
-    [SerializeField]private PhysicsManager _manager;
+    [SerializeField] private PhysicsManager _manager;
 
     private void Awake()
     {
         CalculateDistance();
-        _manager.Initialize(_slider,this);
+        _manager.Initialize(stageSize,ball,_slider, this, BricksList);
     }
     private void Start()
     {
         _slider.AssignProperties(stageSize);
-        ball.AssignProperties(stageSize,brickSize.y,_slider,_manager);
 
     }
 
