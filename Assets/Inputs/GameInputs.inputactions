@@ -58,6 +58,28 @@
                 },
                 {
                     "name": "",
+                    "id": "8339cc25-37e4-4c36-a18f-b44db03d5883",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "Clamp(max=1)",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4df6f602-3a88-4060-9098-0add21fd39eb",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "Clamp(max=-1)",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "bbb6c2ba-cc5a-4521-a8e6-28111ff96a32",
                     "path": "<Keyboard>/space",
                     "interactions": "",
