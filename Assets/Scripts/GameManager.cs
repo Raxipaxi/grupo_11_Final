@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] [ReadOnly] private int currentPoints = 0;
     private static GameInputs _inputs;
     private bool won = false;
+    private int currentBallsInGame;
+    private MapCreation _mapCreation;
+    [SerializeField]private int lifes;
 
     public event Action<bool> OnPause;
     public event Action OnWin;
@@ -62,6 +66,33 @@ public class GameManager : MonoBehaviour
     {
         if (won) return;
         Pause(!isPaused);
+    }
+
+    public void AssignMap(MapCreation creation)
+    {
+        _mapCreation = creation;
+    }
+
+    public void ModifyCurrentBalls(int quantityToModify)
+    {
+        currentBallsInGame += quantityToModify;
+        if (currentBallsInGame <= 0)
+        {
+            lifes--;
+            _mapCreation.Restart();
+        }
+    }
+    private void Win()
+    {
+        SceneManager.LoadScene("MainMenu");
+        print("Ganaste");        
+
+    }
+
+    private void Defeat()
+    {
+        SceneManager.LoadScene("MainMenu");
+    print("Perdiste");        
     }
 
     public void Pause(bool value)

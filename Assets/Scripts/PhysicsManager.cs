@@ -53,9 +53,14 @@ namespace Utilities
             {
                 _ball.ChangeDir(-_ball.Dir.x, _ball.Dir.y);
             }
-            else if (BallBot < 0 || BallTop > _wallY.Bot)
+            else if (BallTop > _wallY.Bot)
             {
                 _ball.ChangeDir(_ball.Dir.x, -_ball.Dir.y);
+            }
+
+            if (BallBot < 0)
+            {
+                _ball.gameObject.SetActive(false);
             }
 
         }

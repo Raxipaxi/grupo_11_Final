@@ -1,3 +1,4 @@
+using System;
 using CustomUpdateManagerNSP;
 using UnityEngine;
 
@@ -32,7 +33,15 @@ public abstract class CustomUpdateBehavior : MonoBehaviour
 
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
+    {
+        if (_manager != null)
+        {
+            _manager.RemoveScript(this);
+        }
+    }
+
+    protected virtual void OnDestroy()
     {
         if (_manager != null)
         {

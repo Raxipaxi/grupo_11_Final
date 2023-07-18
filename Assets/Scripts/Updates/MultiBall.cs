@@ -15,7 +15,7 @@ namespace Utilities.Updates
             }
 
             hasApply = true;
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }

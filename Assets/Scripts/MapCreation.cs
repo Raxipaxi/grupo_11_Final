@@ -12,6 +12,9 @@ public class MapCreation : MonoBehaviour
     [field: SerializeField] public List<Bricks> BricksList;
     [SerializeField] private Slider _slider;
     [SerializeField] private PhysicsManager _manager;
+    [SerializeField]private Transform sliderSpawmPos;
+    [SerializeField]private Transform ballSpawnPoint;
+    [SerializeField] private BallScript _ballScript;
 
     private void Awake()
     {
@@ -20,6 +23,13 @@ public class MapCreation : MonoBehaviour
     private void Start()
     {
         _slider.AssignProperties(LwallX, RwallX);
+        GameManager.Instance.AssignMap(this);
 
+    }
+
+    public void Restart()
+    {
+        _slider.transform.position = sliderSpawmPos.position;
+        BallScript newInstance = Instantiate(_ballScript, ballSpawnPoint.position, Quaternion.identity);
     }
 }

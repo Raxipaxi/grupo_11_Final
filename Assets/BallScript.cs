@@ -1,4 +1,5 @@
-﻿using CustomUpdateManagerNSP;
+﻿using System;
+using CustomUpdateManagerNSP;
 using UnityEngine;
 using Utilities;
 
@@ -34,6 +35,7 @@ public class BallScript : GameplayUpdateBehaviour
 
     void Initialize()
     {
+        GameManager.Instance.ModifyCurrentBalls(1);
         dir = new Vector2(1, 1);
         prevDir = dir;
     }
@@ -45,6 +47,12 @@ public class BallScript : GameplayUpdateBehaviour
         AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.ballBounce);
     }
 
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        GameManager.Instance.ModifyCurrentBalls(-1);
+
+    }
     protected override void UpdateItems()
     {
         base.UpdateItems();
