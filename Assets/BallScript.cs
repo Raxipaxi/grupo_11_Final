@@ -49,12 +49,14 @@ public class BallScript : GameplayUpdateBehaviour
     {
         base.UpdateItems();
         Move();
+        PhysicsManager.Instance.BrickCollisionCheck(this);
+        PhysicsManager.Instance.SliderCollision(this);
     }
 
     void Move()
     {
         Vector3 nextPosition = _tr.position;
-        PhysicsManager.Instance.WallCollision(nextPosition + Dir * (Speed * Time.deltaTime));
+        PhysicsManager.Instance.WallCollision(this,nextPosition + Dir * (Speed * Time.deltaTime));
 
        nextPosition += Dir * (Speed * Time.deltaTime);
        _tr.position = nextPosition;

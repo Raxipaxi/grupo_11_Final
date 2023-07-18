@@ -16,18 +16,11 @@ public class MapCreation : MonoBehaviour
 
     private void Awake()
     {
-        // CalculateDistance();
-        _manager.Initialize(RwallX,LwallX,wallY,ball,_slider, BricksList);
+        _manager.Initialize(RwallX,LwallX,wallY,_slider, BricksList);
     }
     private void Start()
     {
         _slider.AssignProperties(LwallX, RwallX);
 
     }
-
-    // private void CalculateDistance()
-    // { // Ver como conseguir el grosor de la pared en X
-    //     stageSize = new Vector2(Math.Abs(wallsX[0].transform.position.x - wallsX[1].transform.position.x - 0.5f),
-    //         Math.Abs(wallsY[0].transform.position.y - wallsY[1].transform.position.y));
-    // }
 }

@@ -32,11 +32,10 @@ namespace Utilities
             Instance = this;
         }
 
-        public void Initialize (Entity Rwall,Entity Lwall, Entity wallY,BallScript ballScript,Slider slider, List<Bricks> bricksList)
+        public void Initialize (Entity Rwall,Entity Lwall, Entity wallY,Slider slider, List<Bricks> bricksList)
         {
             _slider = slider;
             _bricksList = bricksList;
-            _ball = ballScript;
             _rWall = Rwall;
             _lWall = Lwall;
             _wallY = wallY;
@@ -44,13 +43,11 @@ namespace Utilities
         protected override void UpdateItems()
         {
             base.UpdateItems();
-        //    WallCollision();
-            SliderCollision();
-            BrickCollisionCheck();
-            
+
         }
-        public void WallCollision(Vector3 nextPos)
+        public void WallCollision(BallScript currentBall,Vector3 nextPos)
         {
+            _ball = currentBall;
             if (BallLeft < _lWall.Right || BallRight > _rWall.Left)
             {
                 _ball.ChangeDir(-_ball.Dir.x, _ball.Dir.y);
@@ -63,8 +60,9 @@ namespace Utilities
         }
 
 
-        public void SliderCollision()
+        public void SliderCollision(BallScript currentBall)
         {
+            _ball = currentBall;
             if (BallBot > _slider.Top)
             {
                 return;
@@ -85,8 +83,9 @@ namespace Utilities
 
             }
         }
-        public void BrickCollisionCheck()
+        public void BrickCollisionCheck(BallScript currentBall)
         {
+            _ball = currentBall;
             foreach (Bricks bricks in _bricksList)
             {
                 if (BallBot > bricks.Top ||

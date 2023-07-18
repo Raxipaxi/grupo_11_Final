@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a9652f4a-f9dc-46da-bd4c-1035a094ee82" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.grupo_11_Final/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.grupo_11_Final/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/BallScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/BallScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/Blue.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Blue.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bricks.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bricks.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Parents/Entity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Parents/Entity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PhysicsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PhysicsManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slider.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a9652f4a-f9dc-46da-bd4c-1035a094ee82" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -126,6 +117,7 @@
       <workItem from="1689477465645" duration="1990000" />
       <workItem from="1689513773582" duration="8654000" />
       <workItem from="1689538202855" duration="4936000" />
+      <workItem from="1689688676777" duration="1769000" />
     </task>
     <servers />
   </component>
