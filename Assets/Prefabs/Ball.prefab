@@ -181,5 +181,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needsUpdate: 1
-  speed: 0.1
+  speed: 10
   radioScaler: 1

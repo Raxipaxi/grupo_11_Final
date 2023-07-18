@@ -60,6 +60,7 @@ namespace Utilities
 
             if (BallBot < 0)
             {
+                GameManager.Instance.ModifyCurrentBalls(-1);
                 _ball.gameObject.SetActive(false);
             }
 

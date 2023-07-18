@@ -30,6 +30,6 @@ public class MapCreation : MonoBehaviour
     public void Restart()
     {
         _slider.transform.position = sliderSpawmPos.position;
-        BallScript newInstance = Instantiate(_ballScript, ballSpawnPoint.position, Quaternion.identity);
+        Instantiate(_ballScript, ballSpawnPoint.position, Quaternion.identity);
     }
 }

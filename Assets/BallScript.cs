@@ -50,8 +50,6 @@ public class BallScript : GameplayUpdateBehaviour
     protected override void OnDisable()
     {
         base.OnDisable();
-        GameManager.Instance.ModifyCurrentBalls(-1);
-
     }
     protected override void UpdateItems()
     {

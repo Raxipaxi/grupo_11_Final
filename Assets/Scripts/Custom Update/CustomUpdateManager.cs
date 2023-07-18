@@ -25,7 +25,7 @@ namespace CustomUpdateManagerNSP
             //currentframesDisplayed++;
             var count = customUpdateMonoList.Count;
 
-            for (int i = 0; i < count; i++)
+            for (int i = count - 1; i >= 0; i--)
             {
                 if (customUpdateMonoList[i].NeedsUpdate)
                     if (CheckForPause())
