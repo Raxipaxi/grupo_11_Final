@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 122661078}
   - component: {fileID: 122661077}
   - component: {fileID: 122661076}
-  - component: {fileID: 122661075}
   m_Layer: 0
   m_Name: Custom Updates
   m_TagString: Untagged
@@ -142,21 +141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &122661075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 122661074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76b78f3be0f4e7e9dab70c4cbfb157f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  framerate: 150
-  printFramerateActualization: 0
-  checkForUpdates: 1
 --- !u!114 &122661076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22d1ac954b371454d975bb6a42657399, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framerate: 60
+  framerate: 30
   printFramerateActualization: 0
   checkForUpdates: 1
 --- !u!114 &122661077
@@ -184,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2113a536e615d4cb95761b405f5b02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  framerate: 30
+  framerate: 60
   printFramerateActualization: 0
   checkForUpdates: 1
 --- !u!4 &122661078
@@ -227,7 +211,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383619997}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &383619999
 Camera:
   m_ObjectHideFlags: 0

@@ -13,27 +13,17 @@ public class BallScript : GameplayUpdateBehaviour
     private Transform _tr;
     private Vector2 prevDir;
     private Vector3 _NextDir;
+    private bool initialized = false;
 
     public Vector2 Pos => _tr.position;
     public float Speed => GameManager.Instance.globalConfig.ballSpeed;
     public Vector3 Dir => dir;
 
-    private void Awake() //TODO take out awake, start, update. move them to a CustomUpdater
+    public void Initialize()
     {
-
+        initialized = true;
         _tr = transform;
         radio = _tr.localScale.x * radioScaler;
-        print("Radio " + radio);
-    }
-
-    protected override void Start()
-    {
-        base.Start();
-        Initialize();
-    }
-
-    void Initialize()
-    {
         GameManager.Instance.ModifyCurrentBalls(1);
         dir = new Vector2(1, 1);
         prevDir = dir;
@@ -52,6 +42,7 @@ public class BallScript : GameplayUpdateBehaviour
     }
     protected override void UpdateItems()
     {
+        if (!initialized) return;
         base.UpdateItems();
         Move();
         GameManager.Instance.physicsManager.BrickCollisionCheck(this);

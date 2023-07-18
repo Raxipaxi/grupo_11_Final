@@ -11,14 +11,22 @@ public class MapCreation : MonoBehaviour
     [SerializeField] private Entity wallY;
     [field: SerializeField] public List<Bricks> BricksList;
     [SerializeField] private Slider _slider;
-    [SerializeField]private Transform sliderSpawmPos;
-    [SerializeField]private Transform ballSpawnPoint;
+    [SerializeField] private Transform sliderSpawmPos;
+    [SerializeField] private Transform ballSpawnPoint;
     [SerializeField] private BallScript _ballScript;
 
     public void Initialize(PhysicsManager physicsManager)
     {
         physicsManager.Initialize(RwallX,LwallX,wallY,_slider, BricksList);
         _slider.AssignProperties(LwallX, RwallX);
+
+        for (int i = 0; i < BricksList.Count; i++)
+        {
+            BricksList[i].Initialize();
+        }
+
+        _ballScript.Initialize();
+        Debug.Log(_ballScript.gameObject.name, gameObject);
     }
 
     public void Restart()

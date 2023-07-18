@@ -1443,7 +1443,7 @@ MonoBehaviour:
   _slider: {fileID: 8104038476834638245}
   sliderSpawmPos: {fileID: 8104038477523322642}
   ballSpawnPoint: {fileID: 8104038476779293846}
-  _ballScript: {fileID: 540662750288255096, guid: a73cb623178e927418dce66c2c76d124, type: 3}
+  _ballScript: {fileID: 8104038476545652312}
 --- !u!1 &8104038477032356339
 GameObject:
   m_ObjectHideFlags: 0
@@ -7274,3 +7274,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 540662750288255095, guid: a73cb623178e927418dce66c2c76d124, type: 3}
   m_PrefabInstance: {fileID: 8644525235177942560}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8104038476545652312 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 540662750288255096, guid: a73cb623178e927418dce66c2c76d124, type: 3}
+  m_PrefabInstance: {fileID: 8644525235177942560}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c27393df9fc8e654aaffb1ae7c976836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

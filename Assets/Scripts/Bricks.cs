@@ -12,7 +12,7 @@ namespace Utilities
         [SerializeField]private BricksSO _data;
         private int _hitsLeft;
 
-        private void Start()
+        public void Initialize()
         {
             _hitsLeft = _data.Hits;
             GameManager.Instance.ModifyCurrentBricks(1);
@@ -42,6 +42,7 @@ namespace Utilities
                 // }
                 Instantiate(_data._upgrades[0], transform.position,Quaternion.identity);
             }
+
             GameManager.Instance.ModifyCurrentBricks(-1);
             GameManager.Instance.AddPoints(100*_data.Hits);
             AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.brickDestroyed);
