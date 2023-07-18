@@ -1,15 +1,12 @@
 using System;
 using System.Collections.Generic;
-using CustomUpdateManagerNSP;
 using UnityEngine;
 using Utilities.Parents;
 
-
 namespace Utilities
 {
-    public class PhysicsManager:PhysicsUpdateBehaviour
+    public class PhysicsManager: MonoBehaviour
     {
-        public static PhysicsManager Instance;
         private Slider _slider;
         public Slider Slider => _slider;
         private List<Bricks> _bricksList;
@@ -22,17 +19,6 @@ namespace Utilities
         private float BallTop => _ball.Pos.y + _ball.radio;
         private float BallBot => _ball.Pos.y - _ball.radio;
 
-
-        private void Awake()
-        {
-            if (Instance != null)
-            {
-                Destroy(this);
-                return;
-            }
-            Instance = this;
-        }
-
         public void Initialize (Entity Rwall,Entity Lwall, Entity wallY,Slider slider, List<Bricks> bricksList)
         {
             _slider = slider;
@@ -41,11 +27,7 @@ namespace Utilities
             _lWall = Lwall;
             _wallY = wallY;
         }
-        protected override void UpdateItems()
-        {
-            base.UpdateItems();
 
-        }
         public void WallCollision(BallScript currentBall,Vector3 nextPos)
         {
             _ball = currentBall;
@@ -65,7 +47,6 @@ namespace Utilities
             }
 
         }
-
 
         public void SliderCollision(BallScript currentBall)
         {

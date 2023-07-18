@@ -11,7 +11,7 @@ namespace Utilities.Updates
         protected override void Start()
         {
             base.Start();
-            _slider = PhysicsManager.Instance.Slider;
+            _slider = GameManager.Instance.physicsManager.Slider;
 
         }
 

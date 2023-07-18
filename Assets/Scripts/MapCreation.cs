@@ -11,20 +11,14 @@ public class MapCreation : MonoBehaviour
     [SerializeField] private Entity wallY;
     [field: SerializeField] public List<Bricks> BricksList;
     [SerializeField] private Slider _slider;
-    [SerializeField] private PhysicsManager _manager;
     [SerializeField]private Transform sliderSpawmPos;
     [SerializeField]private Transform ballSpawnPoint;
     [SerializeField] private BallScript _ballScript;
 
-    private void Awake()
+    public void Initialize(PhysicsManager physicsManager)
     {
-        _manager.Initialize(RwallX,LwallX,wallY,_slider, BricksList);
-    }
-    private void Start()
-    {
+        physicsManager.Initialize(RwallX,LwallX,wallY,_slider, BricksList);
         _slider.AssignProperties(LwallX, RwallX);
-        GameManager.Instance.AssignMap(this);
-
     }
 
     public void Restart()

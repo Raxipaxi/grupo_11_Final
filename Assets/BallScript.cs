@@ -6,18 +6,17 @@ using Utilities;
 public class BallScript : GameplayUpdateBehaviour
 {
     public float radio { get; private set; }
-    [SerializeField] private float speed;
-    public float Speed => speed;
+    [SerializeField] private float radioScaler;
     private Slider _slider;
     private PhysicsManager _physicsManager;
     private Vector2 dir;
-    public Vector3 Dir => dir;
     private Transform _tr;
-    public Vector2 Pos => _tr.position;
-    private Vector3 _NextDir;
-    [SerializeField] private float radioScaler;
-
     private Vector2 prevDir;
+    private Vector3 _NextDir;
+
+    public Vector2 Pos => _tr.position;
+    public float Speed => GameManager.Instance.globalConfig.ballSpeed;
+    public Vector3 Dir => dir;
 
     private void Awake() //TODO take out awake, start, update. move them to a CustomUpdater
     {
@@ -55,14 +54,14 @@ public class BallScript : GameplayUpdateBehaviour
     {
         base.UpdateItems();
         Move();
-        PhysicsManager.Instance.BrickCollisionCheck(this);
-        PhysicsManager.Instance.SliderCollision(this);
+        GameManager.Instance.physicsManager.BrickCollisionCheck(this);
+        GameManager.Instance.physicsManager.SliderCollision(this);
     }
 
     void Move()
     {
         Vector3 nextPosition = _tr.position;
-        PhysicsManager.Instance.WallCollision(this,nextPosition + Dir * (Speed * Time.deltaTime));
+        GameManager.Instance.physicsManager.WallCollision(this,nextPosition + Dir * (Speed * Time.deltaTime));
 
        nextPosition += Dir * (Speed * Time.deltaTime);
        _tr.position = nextPosition;

@@ -13,6 +13,7 @@ public class UIManager : Panel
     public PauseMenu pauseMenu;
     public Panel hud;
     public Popup winPopup;
+    public Popup gameOverPopup;
     
     [Header("HUD info")]
     public TMP_Text txtCurrentPoints;
@@ -30,7 +31,14 @@ public class UIManager : Panel
         winPopup.btnConfirm.button.onClick.AddListener(ConfirmWin);
         winPopup.btnCancel.gameObject.SetActive(false);
 
+        gameOverPopup.Close();
+        gameOverPopup.Initialize();
+        gameOverPopup.btnConfirm.button.onClick.AddListener(ConfirmRestart);
+        gameOverPopup.btnCancel.gameObject.SetActive(false);
+
         GameManager.Instance.OnWin += OnWin;
+        GameManager.Instance.OnTakeDamage += UpdateLives;
+        GameManager.Instance.OnGameOver += OnGameOver;
         GameManager.Instance.OnPause += OnPause;
         GameManager.Instance.OnPointsUpdated += OnPointsUpdate;
     }
@@ -38,6 +46,8 @@ public class UIManager : Panel
     public override void Dispose()
     {
         GameManager.Instance.OnWin -= OnWin;
+        GameManager.Instance.OnGameOver -= OnGameOver;
+        GameManager.Instance.OnTakeDamage -= UpdateLives;
         GameManager.Instance.OnPause -= OnPause;
         GameManager.Instance.OnPointsUpdated -= OnPointsUpdate;
 
@@ -47,6 +57,11 @@ public class UIManager : Panel
     public void OnWin()
     {
         winPopup.Open();
+    }
+
+    public void OnGameOver()
+    {
+        gameOverPopup.Open();
     }
 
     public void OnPause(bool paused)
@@ -73,7 +88,7 @@ public class UIManager : Panel
         txtTime.text = TimeSpan.FromSeconds(currentTime).ToString(GameManager.Instance.globalConfig.timeFormat);
     }
 
-    public void UpdateLostTimes(int currentLostTimes)
+    public void UpdateLives(int currentLostTimes)
     {
         txtCurrentLostTimes.text = currentLostTimes.ToString();
     }
@@ -82,5 +97,11 @@ public class UIManager : Panel
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(GameManager.Instance.globalConfig.mainMenuScene);
+    }
+
+    private void ConfirmRestart()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(GameManager.Instance.globalConfig.gameScene);
     }
 }

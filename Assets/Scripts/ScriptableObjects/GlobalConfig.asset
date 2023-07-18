@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cc86886a36adc418c707441272ef7f, type: 3}
   m_Name: GlobalConfig
   m_EditorClassIdentifier: 
+  ballSpeed: 10
+  playerMaxLife: 3
   mainMenuScene: MainMenu
   gameScene: Level1
   uiManagerPrefab: {fileID: 2797996530199104248, guid: 1b5b568fb52c312438a40701e86bd3cb, type: 3}
+  mapCreationPrefab: {fileID: 8104038477032259777, guid: 0771610b520e26c468a8228b48737439, type: 3}
   restartPopup:
     title: Sure you want to restart?
     description: Restarting the level will loose the current points!

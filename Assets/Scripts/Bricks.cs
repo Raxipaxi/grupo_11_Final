@@ -11,6 +11,7 @@ namespace Utilities
     {
         [SerializeField]private BricksSO _data;
         private int _hitsLeft;
+
         private void Start()
         {
             _hitsLeft = _data.Hits;
@@ -23,7 +24,7 @@ namespace Utilities
             
             if (_hitsLeft <= 0)
             {
-                PhysicsManager.Instance.UnList(this);
+                GameManager.Instance.physicsManager.UnList(this);
                 Die();
             }
         }

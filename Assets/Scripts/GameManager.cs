@@ -1,9 +1,11 @@
+using CustomUpdateManagerNSP;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Utilities;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,19 +13,24 @@ public class GameManager : MonoBehaviour
 
     public GlobalConfig globalConfig;
     [ReadOnly] public UIManager uiManager;
+    [ReadOnly] public MapCreation mapCreation;
+    [ReadOnly] public PhysicsManager physicsManager;
 
-    [SerializeField] [ReadOnly] private bool isPaused = false;
-    [SerializeField] [ReadOnly] private int currentPoints = 0;
+    [SerializeField, ReadOnly] private bool isPaused = false;
+    [SerializeField, ReadOnly] private int currentPoints = 0;
+    [ReadOnly, SerializeField] private int lifes;
+
     private static GameInputs _inputs;
     private bool won = false;
     private int currentBallsInGame;
     private int currentBricksInGame;
     private MapCreation _mapCreation;
-    [SerializeField]private int lifes;
 
-    public event Action<bool> OnPause;
-    public event Action OnWin;
-    public event Action<int> OnPointsUpdated;
+    public Action<bool> OnPause;
+    public Action<int> OnTakeDamage;
+    public Action OnWin;
+    public Action OnGameOver;
+    public Action<int> OnPointsUpdated;
 
     public bool IsPaused => isPaused;
 
@@ -41,13 +48,19 @@ public class GameManager : MonoBehaviour
         _inputs.Enable();
         _inputs.Gameplay.Enable();
         _inputs.Gameplay.Pause.started += PauseInput;
-        _inputs.Cheats.SkipToWin.performed += ctx => WinGame();
+        _inputs.Cheats.SkipToWin.performed += ctx => Win();
         _inputs.Cheats.AddPoints.performed += ctx => AddPoints(100);
 
         Time.timeScale = 1f;
 
         uiManager = Instantiate(globalConfig.uiManagerPrefab);
         uiManager.Initialize();
+        uiManager.UpdateLives(globalConfig.playerMaxLife);
+
+        physicsManager = gameObject.AddComponent<PhysicsManager>();
+
+        mapCreation = Instantiate(globalConfig.mapCreationPrefab);
+        mapCreation.Initialize(physicsManager);
     }
 
     void Start()
@@ -58,7 +71,7 @@ public class GameManager : MonoBehaviour
     private void OnDestroy()
     {
         _inputs.Gameplay.Pause.performed -= PauseInput;
-        _inputs.Cheats.SkipToWin.performed -= ctx => WinGame();
+        _inputs.Cheats.SkipToWin.performed -= ctx => Win();
         _inputs.Cheats.AddPoints.performed -= ctx => AddPoints(100);
         uiManager.Dispose();
     }
@@ -79,12 +92,15 @@ public class GameManager : MonoBehaviour
         currentBallsInGame += quantityToModify;
         if (currentBallsInGame <= 0)
         {
-            if (lifes <= 0)
+            lifes++;
+            OnTakeDamage?.Invoke(lifes);
+
+            if (lifes > globalConfig.playerMaxLife)
             {
                 Defeat();
                 return;
             }
-            lifes--;
+
             _mapCreation.Restart();
         }
     }
@@ -96,17 +112,15 @@ public class GameManager : MonoBehaviour
             Win();
         }
     }
-    private void Win()
-    {
-        OnWin?.Invoke();
-        print("Ganaste");        
-
-    }
 
     private void Defeat()
     {
-        SceneManager.LoadScene("MainMenu");
-    print("Perdiste");        
+        _inputs.Gameplay.Disable();
+        _inputs.UI.Enable();
+
+        won = true;
+        Time.timeScale = 0f;
+        OnGameOver?.Invoke();
     }
 
     public void Pause(bool value)
@@ -121,7 +135,7 @@ public class GameManager : MonoBehaviour
         OnPause?.Invoke(isPaused);
     }
 
-    public void WinGame()
+    public void Win()
     {
         _inputs.Gameplay.Disable();
         _inputs.UI.Enable();
