@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private static GameInputs _inputs;
     private bool won = false;
     private int currentBallsInGame;
+    private int currentBricksInGame;
     private MapCreation _mapCreation;
     [SerializeField]private int lifes;
 
@@ -78,13 +79,26 @@ public class GameManager : MonoBehaviour
         currentBallsInGame += quantityToModify;
         if (currentBallsInGame <= 0)
         {
+            if (lifes <= 0)
+            {
+                Defeat();
+                return;
+            }
             lifes--;
             _mapCreation.Restart();
         }
     }
+    public void ModifyCurrentBricks(int quantityToModify)
+    {
+        currentBricksInGame += quantityToModify;
+        if (currentBricksInGame <= 0)
+        {
+            Win();
+        }
+    }
     private void Win()
     {
-        SceneManager.LoadScene("MainMenu");
+        OnWin?.Invoke();
         print("Ganaste");        
 
     }
