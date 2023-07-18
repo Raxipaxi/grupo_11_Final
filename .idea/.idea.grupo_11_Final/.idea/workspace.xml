@@ -14,7 +14,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4014a86cbefb4944b2b6c9211c8fd2fc159a00/65/bde02bdf/Time.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Custom Update/CustomUpdateManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Utilities/MyRandom.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -117,7 +119,7 @@
       <workItem from="1689477465645" duration="1990000" />
       <workItem from="1689513773582" duration="8654000" />
       <workItem from="1689538202855" duration="4936000" />
-      <workItem from="1689688676777" duration="1769000" />
+      <workItem from="1689688676777" duration="8712000" />
     </task>
     <servers />
   </component>

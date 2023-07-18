@@ -1,4 +1,5 @@
 using UnityEngine;
+using Utilities.Updates;
 
 namespace Utilities
 {
@@ -6,6 +7,8 @@ namespace Utilities
     public class BricksSO : ScriptableObject
     {
         #region SerializeFields
+        [field:SerializeField]public Upgrade[] _upgrades;
+
         [field:SerializeField] public int Hits { get; private set;} 
         #endregion
 

@@ -11,6 +11,7 @@ namespace Utilities
     {
         public static PhysicsManager Instance;
         private Slider _slider;
+        public Slider Slider => _slider;
         private List<Bricks> _bricksList;
         private BallScript _ball;
         private Entity _rWall;

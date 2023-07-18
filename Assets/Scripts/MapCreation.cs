@@ -10,7 +10,6 @@ public class MapCreation : MonoBehaviour
     [SerializeField] private Entity RwallX;
     [SerializeField] private Entity wallY;
     [field: SerializeField] public List<Bricks> BricksList;
-    [SerializeField] private BallScript ball;
     [SerializeField] private Slider _slider;
     [SerializeField] private PhysicsManager _manager;
 

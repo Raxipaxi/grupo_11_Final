@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1cddadc369427583ee6dd45bbfe896, type: 3}
   m_Name: ThreeHitsBrick
   m_EditorClassIdentifier: 
-  <Color>k__BackingField: {r: 0.1966002, g: 0.40787357, b: 0.8867924, a: 0}
+  _upgrades:
+  - {fileID: 2114144300322863632, guid: 6f8b180daac13574caddad7599b261bf, type: 3}
   <Hits>k__BackingField: 3

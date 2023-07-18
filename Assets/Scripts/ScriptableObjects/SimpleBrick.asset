@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca1cddadc369427583ee6dd45bbfe896, type: 3}
   m_Name: SimpleBrick
   m_EditorClassIdentifier: 
-  <Color>k__BackingField: {r: 0.023584902, g: 1, b: 0.21984269, a: 0}
+  _upgrades:
+  - {fileID: 2114144300322863632, guid: 6f8b180daac13574caddad7599b261bf, type: 3}
   <Hits>k__BackingField: 1
