@@ -15,7 +15,7 @@ MonoBehaviour:
   ballSpeed: 4
   playerMaxLife: 3
   sliderSpeed: 10
-  distToCheck: 0.7
+  distToCheck: 0.95
   sideHitMod: 0.1
   gameplayFPSTarget: 60
   uiFPSTarget: 30
