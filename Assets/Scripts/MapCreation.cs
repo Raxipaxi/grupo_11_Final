@@ -18,6 +18,7 @@ public class MapCreation : MonoBehaviour
     public void Initialize(PhysicsManager physicsManager)
     {
         physicsManager.Initialize(RwallX,LwallX,wallY,_slider, BricksList);
+        _slider.Initialize();
         _slider.AssignProperties(LwallX, RwallX);
 
         for (int i = 0; i < BricksList.Count; i++)
@@ -26,7 +27,9 @@ public class MapCreation : MonoBehaviour
         }
 
         _ballScript.Initialize();
-        Debug.Log(_ballScript.gameObject.name, gameObject);
+        LwallX.Initialize();
+        RwallX.Initialize();
+        wallY.Initialize();
     }
 
     public void Restart()

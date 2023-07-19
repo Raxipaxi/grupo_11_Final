@@ -1,9 +1,9 @@
 
 namespace CustomUpdateManagerNSP
 {
-    public class PhisicsCustomUpdateManager : CustomUpdateManager
+    public class PhysicsCustomUpdateManager : CustomUpdateManager
     {
-        public static PhisicsCustomUpdateManager Instance;
+        public static PhysicsCustomUpdateManager Instance;
         private void Awake()
         {
             if (Instance == null)

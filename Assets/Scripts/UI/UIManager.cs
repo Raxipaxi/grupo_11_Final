@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
 
-public class UIManager : Panel
+public class UIManager : Panel, IUpdate
 {
     [Header("References")]
     public PauseMenu pauseMenu;
@@ -41,6 +41,8 @@ public class UIManager : Panel
         GameManager.Instance.OnGameOver += OnGameOver;
         GameManager.Instance.OnPause += OnPause;
         GameManager.Instance.OnPointsUpdated += OnPointsUpdate;
+
+        GameManager.Instance.updateManager.uiCustomUpdate.Add(this);
     }
 
     public override void Dispose()
@@ -51,6 +53,7 @@ public class UIManager : Panel
         GameManager.Instance.OnPause -= OnPause;
         GameManager.Instance.OnPointsUpdated -= OnPointsUpdate;
 
+        GameManager.Instance.updateManager.uiCustomUpdate.Remove(this);
         pauseMenu.Dispose();
     }
 
@@ -103,5 +106,10 @@ public class UIManager : Panel
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(GameManager.Instance.globalConfig.gameScene);
+    }
+
+    public void DoUpdate()
+    {
+        UpdateTime(GameManager.Instance.updateManager.CurrentTimeGameplay);
     }
 }

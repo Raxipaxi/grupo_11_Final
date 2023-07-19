@@ -1,10 +1,9 @@
 using System;
-using CustomUpdateManagerNSP;
 using UnityEngine;
 
 namespace Utilities.Parents
 {
-    public class Entity : GameplayUpdateBehaviour
+    public class Entity : MonoBehaviour
     {
         protected Transform _tr;
         public float PosX => _tr.position.x ;
@@ -19,7 +18,7 @@ namespace Utilities.Parents
 
         protected Vector2 size;
 
-        protected virtual void Awake()
+        public virtual void Initialize()
         {
             size = transform.localScale;
             _tr = transform;

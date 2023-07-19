@@ -1,23 +1,22 @@
-using CustomUpdateManagerNSP;
 using UnityEngine;
 using Utilities.Parents;
 
 namespace Utilities.Updates
 {
-    public class Upgrade : Entity
+    public class Upgrade : Entity, IUpdate
     {
         private Slider _slider;
         [SerializeField] private float speed;
-        protected override void Start()
-        {
-            base.Start();
-            _slider = GameManager.Instance.physicsManager.Slider;
 
+        public override void Initialize()
+        {
+            base.Initialize();
+            _slider = GameManager.Instance.physicsManager.Slider;
+            GameManager.Instance.updateManager.gameplayCustomUpdate.Add(this);
         }
 
-        protected override void UpdateItems()
+        public void DoUpdate()
         {
-            base.UpdateItems();
             DetectSliderPosition();
             Move();
         }
@@ -49,9 +48,8 @@ namespace Utilities.Updates
 
         protected virtual void ApplyUpgrade()
         {
-            Destroy(gameObject);
-            //Se aplica el ugrade deseado overraideado.
-            
+            GameManager.Instance.updateManager.gameplayCustomUpdate.Remove(this);
+            gameObject.SetActive(false);
         }
     }
 }

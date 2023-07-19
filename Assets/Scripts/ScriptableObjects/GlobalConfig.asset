@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballSpeed: 10
   playerMaxLife: 3
+  gameplayFPSTarget: 60
+  uiFPSTarget: 30
   mainMenuScene: MainMenu
   gameScene: Level1
+  ballPrefab: {fileID: 540662750288255096, guid: a73cb623178e927418dce66c2c76d124, type: 3}
+  updateManagerPrefab: {fileID: 9085790148972733024, guid: 0c52f5b0e829c3c4c97dbd04e3c7d123, type: 3}
   uiManagerPrefab: {fileID: 2797996530199104248, guid: 1b5b568fb52c312438a40701e86bd3cb, type: 3}
   mapCreationPrefab: {fileID: 8104038477032259777, guid: 0771610b520e26c468a8228b48737439, type: 3}
   restartPopup:

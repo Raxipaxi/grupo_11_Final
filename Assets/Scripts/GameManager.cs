@@ -1,4 +1,3 @@
-using CustomUpdateManagerNSP;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +14,7 @@ public class GameManager : MonoBehaviour
     [ReadOnly] public UIManager uiManager;
     [ReadOnly] public MapCreation mapCreation;
     [ReadOnly] public PhysicsManager physicsManager;
+    [ReadOnly] public UpdateManager updateManager;
 
     [SerializeField, ReadOnly] private bool isPaused = false;
     [SerializeField, ReadOnly] private int currentPoints = 0;
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public Action OnGameOver;
     public Action<int> OnPointsUpdated;
 
+    public bool Won => won;
     public bool IsPaused => isPaused;
 
     void Awake()
@@ -52,6 +53,9 @@ public class GameManager : MonoBehaviour
         _inputs.Cheats.AddPoints.performed += ctx => AddPoints(100);
 
         Time.timeScale = 1f;
+
+        updateManager = Instantiate(globalConfig.updateManagerPrefab);
+        updateManager.Initialize();
 
         uiManager = Instantiate(globalConfig.uiManagerPrefab);
         uiManager.Initialize();

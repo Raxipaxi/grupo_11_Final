@@ -4,7 +4,7 @@ using Utilities.Parents;
 namespace Utilities
 {
     //BORRAR COMENTARIOS
-    public class Slider : Entity
+    public class Slider : Entity, IUpdate
     {
         private PlayerInputs _inputs;
         
@@ -17,24 +17,14 @@ namespace Utilities
         private Entity _rWall;
         private Entity _lWall;
 
-        protected override void Awake()
+        public override void Initialize()
         {
-            base.Awake();
+            base.Initialize();
+
+            GameManager.Instance.updateManager.fixCustomUpdater.Add(this);
             _inputs = GetComponent<PlayerInputs>();
             size.x = center.transform.localScale.x + right.transform.localScale.x + left.transform.localScale.x;
-
-        }
-
-        protected override void Start()
-        {
-            base.Start();
             _currSpeed = speed;
-        }
-
-        protected override void UpdateItems()
-        {
-            base.UpdateItems();
-            Inputs();
         }
 
         public void AssignProperties(Entity lwall, Entity rwall)
@@ -42,12 +32,13 @@ namespace Utilities
             _rWall = rwall;
             _lWall = lwall;
         }
+
         void Inputs()
         {
             _inputs.UpdateDir();
-
             Move(_inputs.Dir);
         }
+
         void Move(int dir)
         {
             Vector3 nextPos = _tr.position + _tr.right * _currSpeed * dir * Time.deltaTime ;
@@ -56,6 +47,10 @@ namespace Utilities
                 _tr.position = nextPos;
             }
         }
-        
+
+        public void DoUpdate()
+        {
+            Inputs();
+        }
     }
 }

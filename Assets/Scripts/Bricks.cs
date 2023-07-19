@@ -12,8 +12,9 @@ namespace Utilities
         [SerializeField]private BricksSO _data;
         private int _hitsLeft;
 
-        public void Initialize()
+        public override void Initialize()
         {
+            base.Initialize();
             _hitsLeft = _data.Hits;
             GameManager.Instance.ModifyCurrentBricks(1);
         }
@@ -40,7 +41,8 @@ namespace Utilities
                 // {
                 //     instanceUpgrade = Instantiate(_data._upgrades[0]);
                 // }
-                Instantiate(_data._upgrades[0], transform.position,Quaternion.identity);
+                Upgrade upgrade = Instantiate(_data._upgrades[0], transform.position,Quaternion.identity);
+                upgrade.Initialize();
             }
 
             GameManager.Instance.ModifyCurrentBricks(-1);
