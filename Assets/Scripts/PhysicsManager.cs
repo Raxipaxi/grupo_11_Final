@@ -31,16 +31,16 @@ namespace Utilities
         public void WallCollision(BallScript currentBall,Vector3 nextPos)
         {
             _ball = currentBall;
-            if (BallLeft <= _lWall.Right || BallRight >= _rWall.Left)
+            if (BallLeft <= _lWall.Right+GameManager.Instance.globalConfig.deadWall || BallRight >= _rWall.Left-GameManager.Instance.globalConfig.deadWall)
             {
                 _ball.ChangeDir(-_ball.Dir.x, _ball.Dir.y);
             }
-            else if (BallTop >= _wallY.Bot)
+            else if (BallTop >= _wallY.Bot + GameManager.Instance.globalConfig.deadWall )
             {
                 _ball.ChangeDir(_ball.Dir.x, -_ball.Dir.y);
             }
 
-            if (BallBot < 0)
+            if (BallBot < 0 + GameManager.Instance.globalConfig.deadWall)
             {
                 GameManager.Instance.ModifyCurrentBalls(-1);
                 _ball.Disable();

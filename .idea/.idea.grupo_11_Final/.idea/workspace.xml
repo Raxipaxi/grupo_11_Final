@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9652f4a-f9dc-46da-bd4c-1035a094ee82" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.grupo_11_Final/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.grupo_11_Final/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Map.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Map.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Level1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BallScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BallScript.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bricks.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bricks.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapCreation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapCreation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Ball.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Ball.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PhysicsManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PhysicsManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerInputs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerInputs.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GlobalConfig.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GlobalConfig.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GlobalConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GlobalConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slider.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
