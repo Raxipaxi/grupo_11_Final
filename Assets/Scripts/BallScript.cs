@@ -41,6 +41,8 @@ public class BallScript : MonoBehaviour, IUpdate
     {
         GameManager.Instance.updateManager.gameplayCustomUpdate.Remove(this);
         gameObject.SetActive(false);
+        Destroy(this);
+
     }
 
     void Move()
