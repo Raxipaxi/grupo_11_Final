@@ -9,8 +9,8 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "51a9e589-dc6c-43c0-ba62-f46a51a07073",
-                    "expectedControlType": "Axis",
-                    "processors": "",
+                    "expectedControlType": "",
+                    "processors": "Clamp(min=-1,max=1)",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -36,50 +36,6 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "3ea1eea7-2329-41c5-b643-38370da18168",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "Clamp(max=-1)",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f1f7ab55-6d01-47de-bc6f-992740474f9a",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "Clamp(max=1)",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8339cc25-37e4-4c36-a18f-b44db03d5883",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "Clamp(max=1)",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4df6f602-3a88-4060-9098-0add21fd39eb",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "Clamp(max=-1)",
-                    "groups": "",
-                    "action": "Move",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "bbb6c2ba-cc5a-4521-a8e6-28111ff96a32",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -99,6 +55,72 @@
                     "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "9f6fe659-98af-4a84-81ad-ff20e25d39c6",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "ec4685ce-c089-4ba3-a335-b107db72aa7e",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "b0e860ed-7fc2-4640-ba70-9cd6cb74e7fb",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "512d9655-5cb3-4f0d-b0e1-9f04dc2706ce",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "10424381-d4d7-4ef8-845b-ad7e74d21f9d",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "2990d6cd-65bb-443c-8ad5-d57f222b9f1c",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

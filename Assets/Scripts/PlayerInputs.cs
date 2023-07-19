@@ -8,23 +8,23 @@ public class PlayerInputs : MonoBehaviour
     private int _xAxis;
     private float currX;
     public Action OnShoot;
-    public int Dir => _xAxis;
+    public int Dir => (int)currX;
 
     public void Initialize()
     {
         _inputs = new GameInputs();
         _inputs.Enable();
-
-        _inputs.Gameplay.Move.started += Move;
-        _inputs.Gameplay.Move.canceled += MoveCanceled;
+        print("Init " + currX);
+        //_inputs.Gameplay.Move.started += Move;
+        //_inputs.Gameplay.Move.canceled += MoveCanceled;
 
         _inputs.Gameplay.Shoot.performed += CanShoot;
     }
 
     private void OnDestroy()
     {
-        _inputs.Gameplay.Move.started -= Move;
-        _inputs.Gameplay.Move.canceled -= MoveCanceled;
+        //_inputs.Gameplay.Move.started -= Move;
+        //_inputs.Gameplay.Move.canceled -= MoveCanceled;
         
         _inputs.Gameplay.Shoot.performed -= CanShoot;
        
@@ -32,8 +32,7 @@ public class PlayerInputs : MonoBehaviour
 
     private void Move(InputAction.CallbackContext context)
     {
-        currX = context.ReadValue<float>();
-        _xAxis = currX > 0f ? 1 : -1;
+
     }
 
     private void MoveCanceled(InputAction.CallbackContext context)
@@ -47,6 +46,17 @@ public class PlayerInputs : MonoBehaviour
         OnShoot?.Invoke();
     }
 
-    
+    public void UpdateInput()
+    {
+        currX = _inputs.Gameplay.Move.ReadValue<float>();
+        print(currX);
+
+        //if(currX == 0f)
+        //{
+        //    _xAxis = 0;
+        //    return;
+        //}
+        //_xAxis = currX > 0f ? 1 : -1;
+    }
     
  }

@@ -68,6 +68,7 @@ namespace Utilities
         public void DoUpdate()
         {
             if (GameManager.Instance.IsPaused) return;
+            _inputs.UpdateInput();
             Move(_inputs.Dir);
         }
     }
