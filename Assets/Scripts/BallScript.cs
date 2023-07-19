@@ -53,6 +53,9 @@ public class BallScript : MonoBehaviour, IUpdate
             GameManager.Instance.physicsManager.WallCollision(this, _NextPos);
         }
 
+        _NextPos.x = Mathf.Clamp(_NextPos.x, GameManager.Instance.physicsManager.WallL.Right, GameManager.Instance.physicsManager.WallR.Left);
+        _NextPos.y = Mathf.Clamp(_NextPos.y, GameManager.Instance.globalConfig.deadZone, GameManager.Instance.physicsManager.WallT.Bot);
+
         _NextPos += Dir * (Speed * Time.deltaTime);
        _tr.position = _NextPos;
     }

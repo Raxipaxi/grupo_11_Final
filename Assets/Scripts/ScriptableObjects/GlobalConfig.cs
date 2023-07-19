@@ -13,8 +13,8 @@ public class GlobalConfig : ScriptableObject
     public float sliderSpeed = 10f;
     public float distToCheck = 1f;
     public float sideHitMod = 0.1f;
-    public float deadWall = 0.2f;
-
+    public float deadZone = -1f;
+   
     [Header("CustomUpdate Settings")]
     [Tooltip("This FrameRate is for the gameplay things that keep adding and leaving.")]
     public int gameplayFPSTarget = 60; //nothign that depends on the input system should be here

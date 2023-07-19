@@ -14,6 +14,10 @@ namespace Utilities
         private Entity _rWall;
         private Entity _lWall;
         private Entity _wallY;
+
+        public Entity WallR => _rWall;
+        public Entity WallL => _lWall;
+        public Entity WallT => _wallY;
         private float BallLeft => _ball.Pos.x - _ball.radio;
         private float BallRight => _ball.Pos.x + _ball.radio;
         private float BallTop => _ball.Pos.y + _ball.radio;
@@ -31,16 +35,16 @@ namespace Utilities
         public void WallCollision(BallScript currentBall,Vector3 nextPos)
         {
             _ball = currentBall;
-            if (BallLeft <= _lWall.Right+GameManager.Instance.globalConfig.deadWall || BallRight >= _rWall.Left-GameManager.Instance.globalConfig.deadWall)
+            if (BallLeft <= _lWall.Right || BallRight >= _rWall.Left)
             {
                 _ball.ChangeDir(-_ball.Dir.x, _ball.Dir.y);
             }
-            else if (BallTop >= _wallY.Bot + GameManager.Instance.globalConfig.deadWall )
+            else if (BallTop >= _wallY.Bot  )
             {
                 _ball.ChangeDir(_ball.Dir.x, -_ball.Dir.y);
             }
 
-            if (BallBot < 0 + GameManager.Instance.globalConfig.deadWall)
+            if (BallBot < 0)
             {
                 GameManager.Instance.ModifyCurrentBalls(-1);
                 _ball.Disable();
