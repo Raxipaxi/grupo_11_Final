@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cc86886a36adc418c707441272ef7f, type: 3}
   m_Name: GlobalConfig
   m_EditorClassIdentifier: 
-  ballSpeed: 10
+  ballSpeed: 7
   playerMaxLife: 3
   sliderSpeed: 5
   distToCheck: 0.9
   sideHitMod: 0.1
-  deadZone: -1
-  gameplayFPSTarget: 120
+  deadZone: -0.5
+  gameplayFPSTarget: 80
   uiFPSTarget: 30
   mainMenuScene: MainMenu
   gameScene: Level1

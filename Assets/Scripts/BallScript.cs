@@ -5,7 +5,7 @@ using Utilities;
 public class BallScript : MonoBehaviour, IUpdate
 {
     public float radio { get; private set; }
-    [SerializeField] private float radioScaler;
+
     private Slider _slider;
     private Vector2 dir;
     private Transform _tr;
@@ -21,7 +21,7 @@ public class BallScript : MonoBehaviour, IUpdate
     {
         initialized = true;
         _tr = transform;
-        radio = _tr.localScale.x * radioScaler;
+        radio = _tr.localScale.x/2 ;
         GameManager.Instance.ModifyCurrentBalls(1);
         dir = new Vector2(1, 1);
         _PrevPos = _tr.position;
@@ -55,8 +55,8 @@ public class BallScript : MonoBehaviour, IUpdate
             GameManager.Instance.physicsManager.WallCollision(this, _NextPos);
         }
 
-        _NextPos.x = Mathf.Clamp(_NextPos.x, GameManager.Instance.physicsManager.WallL.Right, GameManager.Instance.physicsManager.WallR.Left);
-        _NextPos.y = Mathf.Clamp(_NextPos.y, GameManager.Instance.globalConfig.deadZone, GameManager.Instance.physicsManager.WallT.Bot);
+        _NextPos.x = Mathf.Clamp(_NextPos.x, GameManager.Instance.physicsManager.WallL.Right + radio, GameManager.Instance.physicsManager.WallR.Left-radio);
+        _NextPos.y = Mathf.Clamp(_NextPos.y, GameManager.Instance.globalConfig.deadZone+radio, GameManager.Instance.physicsManager.WallT.Bot-radio);
 
         _NextPos += Dir * (Speed * Time.deltaTime);
        _tr.position = _NextPos;
@@ -66,6 +66,7 @@ public class BallScript : MonoBehaviour, IUpdate
     {
         if (!initialized) return;
         Move();
+
         GameManager.Instance.physicsManager.BrickCollisionCheck(this);
         GameManager.Instance.physicsManager.SliderCollision(this);
     }

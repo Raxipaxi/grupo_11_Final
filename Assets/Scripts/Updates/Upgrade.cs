@@ -28,17 +28,11 @@ namespace Utilities.Updates
                 return;
             }
 
-            if (Left >= _slider.Left && Right <= _slider.Right)
+            if (Left <= _slider.Right && Right >= _slider.Left)
             {
                 ApplyUpgrade();
             }
-            // if (Top <= _slider.Top || Bot >= _slider.Bot)
-            // {
-            //     if (Left <= _slider.Right && Right <= _slider.Left)
-            //     {
-            //         //ApplyUpgrade();
-            //     }
-            // }
+
         }
 
         private void Move()
@@ -50,6 +44,8 @@ namespace Utilities.Updates
         {
             GameManager.Instance.updateManager.gameplayCustomUpdate.Remove(this);
             gameObject.SetActive(false);
+            Destroy(gameObject);
+
         }
     }
 }
