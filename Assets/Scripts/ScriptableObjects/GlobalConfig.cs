@@ -10,6 +10,9 @@ public class GlobalConfig : ScriptableObject
     [Header("Global")]
     public float ballSpeed = 10f;
     public int playerMaxLife = 3;
+    public float sliderSpeed = 10f;
+    public float distToCheck = 1f;
+    public float sideHitMod = 0.1f;
 
     [Header("CustomUpdate Settings")]
     [Tooltip("This FrameRate is for the gameplay things that keep adding and leaving.")]

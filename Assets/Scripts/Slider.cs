@@ -10,7 +10,9 @@ namespace Utilities
         [SerializeField] private GameObject left;
         [SerializeField] private GameObject right;
         [SerializeField, ReadOnly] private float _currSpeed;
+        [SerializeField] private GameObject fakeBall;
 
+        private bool bHasBall;
         private Entity _rWall;
         private Entity _lWall;
         private float centerOfSlider = 0f;
@@ -20,12 +22,13 @@ namespace Utilities
         public override void Initialize()
         {
             base.Initialize();
-
-            _currSpeed = GameManager.Instance.globalConfig.ballSpeed;
+            BallStock();
+            _currSpeed = GameManager.Instance.globalConfig.sliderSpeed;
             size.x = center.transform.localScale.x + right.transform.localScale.x + left.transform.localScale.x;
             centerOfSlider = center.transform.localScale.x / 2;
 
             _inputs.Initialize();
+            _inputs.OnShoot += CanShoot;
 
             GameManager.Instance.updateManager.fixCustomUpdater.Add(this);
         }
@@ -45,6 +48,23 @@ namespace Utilities
             }
         }
 
+        private void CanShoot()
+        {
+            if (bHasBall)
+            {
+                bHasBall = false;
+                fakeBall.SetActive(false);
+                BallScript newBall = GameManager.Instance.mapCreation.GetBall(fakeBall.transform.position);
+                newBall.Initialize();
+
+            }
+        }
+
+        public void BallStock()
+        {
+            bHasBall = true;
+            fakeBall.SetActive(true);
+        }
         public void DoUpdate()
         {
             if (GameManager.Instance.IsPaused) return;

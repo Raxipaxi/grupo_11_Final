@@ -62,7 +62,7 @@ namespace Utilities
                 if (ballPosX < _slider.PosX - _slider.Center ||
                     ballPosX > _slider.PosX + _slider.Center)
                 {
-                    _ball.ChangeDir(_ball.Dir.x - 0.25f, Math.Abs(_ball.Dir.y));
+                    _ball.ChangeDir(_ball.Dir.x - GameManager.Instance.globalConfig.sideHitMod, Math.Abs(_ball.Dir.y));
                 }
                 else
                 {

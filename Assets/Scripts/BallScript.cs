@@ -34,7 +34,6 @@ public class BallScript : MonoBehaviour, IUpdate
     {
         dir.x = currDirX ;
         dir.y = currDirY;
-        print(Dir.x + "y" + Dir.y);
         AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.ballBounce);
     }
 
@@ -48,7 +47,7 @@ public class BallScript : MonoBehaviour, IUpdate
     {
         
         _NextPos = _tr.position + Dir * (Speed * Time.deltaTime);
-        if (!((Math.Abs(Vector3.Magnitude(_NextPos-_PrevPos)))<0.75f))
+        if (!((Math.Abs(Vector3.Magnitude(_NextPos-_PrevPos)))<GameManager.Instance.globalConfig.distToCheck))
         {
             _PrevPos = _NextPos;
             GameManager.Instance.physicsManager.WallCollision(this, _NextPos);

@@ -34,13 +34,8 @@ namespace Utilities
         {
             gameObject.SetActive(false);
             int dropProb =Random.Range(0, 100);
-            if(dropProb > 70)
+            if(dropProb < 5)
             {
-                
-                // if (dropProb > 90)
-                // {
-                //     instanceUpgrade = Instantiate(_data._upgrades[0]);
-                // }
                 Upgrade upgrade = Instantiate(_data._upgrades[0], transform.position,Quaternion.identity);
                 upgrade.Initialize();
             }

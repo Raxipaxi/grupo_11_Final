@@ -7,6 +7,7 @@ public class PlayerInputs : MonoBehaviour
     private GameInputs _inputs;
     private int _xAxis;
     private float currX;
+    public Action OnShoot;
     public int Dir => _xAxis;
 
     public void Initialize()
@@ -16,12 +17,17 @@ public class PlayerInputs : MonoBehaviour
 
         _inputs.Gameplay.Move.started += Move;
         _inputs.Gameplay.Move.canceled += MoveCanceled;
+
+        _inputs.Gameplay.Shoot.performed += CanShoot;
     }
 
     private void OnDestroy()
     {
         _inputs.Gameplay.Move.started -= Move;
         _inputs.Gameplay.Move.canceled -= MoveCanceled;
+        
+        _inputs.Gameplay.Shoot.performed -= CanShoot;
+       
     }
 
     private void Move(InputAction.CallbackContext context)
@@ -35,4 +41,12 @@ public class PlayerInputs : MonoBehaviour
         currX = 0f;
         _xAxis = 0;
     }
+
+    public void CanShoot(InputAction.CallbackContext context)
+    {
+        OnShoot?.Invoke();
+    }
+
+    
+    
  }
