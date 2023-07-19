@@ -27,18 +27,12 @@ public class PlayerInputs : MonoBehaviour
     private void Move(InputAction.CallbackContext context)
     {
         currX = context.ReadValue<float>();
+        _xAxis = currX > 0f ? 1 : -1;
     }
 
     private void MoveCanceled(InputAction.CallbackContext context)
     {
         currX = 0f;
         _xAxis = 0;
-    }
-
-    public void UpdateDir()
-    {
-        if (currX == 0f) return;
-
-        _xAxis = currX > 0f ? 1 : -1;
     }
  }

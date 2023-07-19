@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &540662750280505267
 Transform:
   m_ObjectHideFlags: 0
@@ -180,6 +180,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27393df9fc8e654aaffb1ae7c976836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needsUpdate: 1
-  speed: 10
   radioScaler: 1

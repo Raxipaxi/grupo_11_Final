@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     private bool won = false;
     private int currentBallsInGame;
     private int currentBricksInGame;
-    private MapCreation _mapCreation;
 
     public Action<bool> OnPause;
     public Action<int> OnTakeDamage;
@@ -60,6 +59,7 @@ public class GameManager : MonoBehaviour
         uiManager = Instantiate(globalConfig.uiManagerPrefab);
         uiManager.Initialize();
         uiManager.UpdateLives(globalConfig.playerMaxLife);
+        lifes = globalConfig.playerMaxLife;
 
         physicsManager = gameObject.AddComponent<PhysicsManager>();
 
@@ -86,26 +86,21 @@ public class GameManager : MonoBehaviour
         Pause(!isPaused);
     }
 
-    public void AssignMap(MapCreation creation)
-    {
-        _mapCreation = creation;
-    }
-
     public void ModifyCurrentBalls(int quantityToModify)
     {
         currentBallsInGame += quantityToModify;
         if (currentBallsInGame <= 0)
         {
-            lifes++;
+            lifes--;
             OnTakeDamage?.Invoke(lifes);
+            mapCreation.Restart();
 
-            if (lifes > globalConfig.playerMaxLife)
+            if (lifes <= 0)
             {
                 Defeat();
                 return;
             }
 
-            _mapCreation.Restart();
         }
     }
     public void ModifyCurrentBricks(int quantityToModify)

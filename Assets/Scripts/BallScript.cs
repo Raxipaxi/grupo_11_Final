@@ -27,6 +27,7 @@ public class BallScript : MonoBehaviour, IUpdate
         _PrevPos = _tr.position;
 
         GameManager.Instance.updateManager.gameplayCustomUpdate.Add(this);
+        gameObject.SetActive(true);
     }
 
     public void ChangeDir(float currDirX, float currDirY)
@@ -40,6 +41,7 @@ public class BallScript : MonoBehaviour, IUpdate
     public void Disable()
     {
         GameManager.Instance.updateManager.gameplayCustomUpdate.Remove(this);
+        gameObject.SetActive(false);
     }
 
     void Move()
