@@ -34,7 +34,7 @@ public class UpdateManager : MonoBehaviour
             currentTimeGameplay += Time.deltaTime;
         }
 
-        //fixCustomUpdater.UpdateList();
+        fixCustomUpdater.UpdateList();
         gameplayCustomUpdate.UpdateList();
         uiCustomUpdate.UpdateList();
     }
