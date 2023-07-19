@@ -3,40 +3,37 @@ using Utilities.Parents;
 
 namespace Utilities
 {
-    //BORRAR COMENTARIOS
     public class Slider : Entity, IUpdate
     {
-        private PlayerInputs _inputs;
-        
-        [SerializeField] private float speed;
-        private float _currSpeed;
+        [SerializeField] PlayerInputs _inputs;
         [SerializeField] private GameObject center;
         [SerializeField] private GameObject left;
         [SerializeField] private GameObject right;
-        public float Center => center.transform.localScale.x/2;
+        [SerializeField, ReadOnly] private float _currSpeed;
+
         private Entity _rWall;
         private Entity _lWall;
+        private float centerOfSlider = 0f;
+
+        public float Center => centerOfSlider;
 
         public override void Initialize()
         {
             base.Initialize();
 
-            GameManager.Instance.updateManager.fixCustomUpdater.Add(this);
-            _inputs = GetComponent<PlayerInputs>();
+            _currSpeed = GameManager.Instance.globalConfig.ballSpeed;
             size.x = center.transform.localScale.x + right.transform.localScale.x + left.transform.localScale.x;
-            _currSpeed = speed;
+            centerOfSlider = center.transform.localScale.x / 2;
+
+            _inputs.Initialize();
+
+            GameManager.Instance.updateManager.fixCustomUpdater.Add(this);
         }
 
         public void AssignProperties(Entity lwall, Entity rwall)
         {
             _rWall = rwall;
             _lWall = lwall;
-        }
-
-        void Inputs()
-        {
-            _inputs.UpdateDir();
-            Move(_inputs.Dir);
         }
 
         void Move(int dir)
@@ -50,7 +47,9 @@ namespace Utilities
 
         public void DoUpdate()
         {
-            Inputs();
+            if (GameManager.Instance.IsPaused) return;
+            _inputs.UpdateDir();
+            Move(_inputs.Dir);
         }
     }
 }

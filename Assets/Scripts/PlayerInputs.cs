@@ -7,21 +7,18 @@ using UnityEngine;
      private float currX;
      public int Dir => _xAxis;
 
-     private void Awake()
+     public void Initialize()
      {
          _inputs = new GameInputs();
+         _inputs.Enable();
          
          _inputs.Gameplay.Move.started += context => currX = context.ReadValue<float>();
          _inputs.Gameplay.Move.canceled += context => currX = 0;
      }
+
      public void UpdateDir()
      {
          if (currX == 0f) {_xAxis = 0;return;}
          _xAxis = currX > 0f ? 1 : -1;
      }
-     private void OnEnable()
-     {
-         _inputs.Enable();
-     }
-     
  }

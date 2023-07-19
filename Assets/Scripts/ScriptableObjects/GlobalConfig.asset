@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11cc86886a36adc418c707441272ef7f, type: 3}
   m_Name: GlobalConfig
   m_EditorClassIdentifier: 
-  ballSpeed: 10
+  ballSpeed: 4
   playerMaxLife: 3
   gameplayFPSTarget: 60
   uiFPSTarget: 30
