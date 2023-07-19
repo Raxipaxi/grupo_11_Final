@@ -9,7 +9,8 @@ public class BallScript : MonoBehaviour, IUpdate
     private Slider _slider;
     private Vector2 dir;
     private Transform _tr;
-    private Vector3 _NextDir;
+    private Vector3 _NextPos;
+    private Vector3 _PrevPos;
     private bool initialized = false;
 
     public Vector2 Pos => _tr.position;
@@ -23,6 +24,7 @@ public class BallScript : MonoBehaviour, IUpdate
         radio = _tr.localScale.x * radioScaler;
         GameManager.Instance.ModifyCurrentBalls(1);
         dir = new Vector2(1, 1);
+        _PrevPos = _tr.position;
 
         GameManager.Instance.updateManager.gameplayCustomUpdate.Add(this);
     }
@@ -31,6 +33,7 @@ public class BallScript : MonoBehaviour, IUpdate
     {
         dir.x = currDirX ;
         dir.y = currDirY;
+        print(Dir.x + "y" + Dir.y);
         AudioManager.instance.PlaySFXSound(AudioManager.instance.soundReferences.ballBounce);
     }
 
@@ -41,11 +44,16 @@ public class BallScript : MonoBehaviour, IUpdate
 
     void Move()
     {
-        _NextDir = _tr.position + Dir * (Speed * Time.deltaTime);
-        GameManager.Instance.physicsManager.WallCollision(this, _NextDir);
+        
+        _NextPos = _tr.position + Dir * (Speed * Time.deltaTime);
+        if (!((Math.Abs(Vector3.Magnitude(_NextPos-_PrevPos)))<0.75f))
+        {
+            _PrevPos = _NextPos;
+            GameManager.Instance.physicsManager.WallCollision(this, _NextPos);
+        }
 
-        _NextDir += Dir * (Speed * Time.deltaTime);
-       _tr.position = _NextDir;
+        _NextPos += Dir * (Speed * Time.deltaTime);
+       _tr.position = _NextPos;
     }
 
     public void DoUpdate()

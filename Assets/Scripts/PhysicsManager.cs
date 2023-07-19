@@ -31,11 +31,11 @@ namespace Utilities
         public void WallCollision(BallScript currentBall,Vector3 nextPos)
         {
             _ball = currentBall;
-            if (BallLeft < _lWall.Right || BallRight > _rWall.Left)
+            if (BallLeft <= _lWall.Right || BallRight >= _rWall.Left)
             {
                 _ball.ChangeDir(-_ball.Dir.x, _ball.Dir.y);
             }
-            else if (BallTop > _wallY.Bot)
+            else if (BallTop >= _wallY.Bot)
             {
                 _ball.ChangeDir(_ball.Dir.x, -_ball.Dir.y);
             }
